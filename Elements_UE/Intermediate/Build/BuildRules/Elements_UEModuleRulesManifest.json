@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"B:\\UnrealEngine5_Projects\\_repos4\\Elements\\Elements_UE\\Source\\Elements_UE\\Elements_UE.Build.cs",
+		"B:\\UnrealEngine5_Projects\\_repos4\\Elements\\Elements_UE\\Source\\Elements_UE.Target.cs",
+		"B:\\UnrealEngine5_Projects\\_repos4\\Elements\\Elements_UE\\Source\\Elements_UEEditor.Target.cs"
+	],
+	"EngineVersion": "5.4.4"
+}

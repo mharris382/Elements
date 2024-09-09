@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\Elements_UE.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\Elements_UE.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\Elements_UEEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\.vsconfig" />
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\Elements_UE">
+      <UniqueIdentifier>{937176DF-05F6-3002-BD6B-CB5670E70482}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Elements_UE\ElementsSubsystem.cpp">
+      <Filter>Source\Elements_UE</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Elements_UE\ElementsSubsystem.h">
+      <Filter>Source\Elements_UE</Filter>
+    </ClInclude>
+    <None Include="..\..\Source\Elements_UE\Elements_UE.Build.cs">
+      <Filter>Source\Elements_UE</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\Elements_UE\Elements_UE.cpp">
+      <Filter>Source\Elements_UE</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Elements_UE\Elements_UE.h">
+      <Filter>Source\Elements_UE</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Elements_UE\Elements_UECharacter.cpp">
+      <Filter>Source\Elements_UE</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Elements_UE\Elements_UECharacter.h">
+      <Filter>Source\Elements_UE</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Elements_UE\Elements_UEGameMode.cpp">
+      <Filter>Source\Elements_UE</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Elements_UE\Elements_UEGameMode.h">
+      <Filter>Source\Elements_UE</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

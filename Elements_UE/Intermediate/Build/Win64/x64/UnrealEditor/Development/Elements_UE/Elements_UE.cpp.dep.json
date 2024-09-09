@@ -1,0 +1,14 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "b:\\unrealengine5_projects\\_repos4\\elements\\elements_ue\\source\\elements_ue\\elements_ue.cpp",
+        "ProvidedModule": "",
+        "PCH": "b:\\unrealengine5_projects\\_repos4\\elements\\elements_ue\\intermediate\\build\\win64\\x64\\elements_ueeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "b:\\unrealengine5_projects\\_repos4\\elements\\elements_ue\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\elements_ue\\definitions.elements_ue.h",
+            "b:\\unrealengine5_projects\\_repos4\\elements\\elements_ue\\source\\elements_ue\\elements_ue.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

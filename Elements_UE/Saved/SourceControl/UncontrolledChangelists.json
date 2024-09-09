@@ -1,0 +1,52 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/ThirdPerson/Blueprints/BP_ThirdPersonCharacter.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Input/Actions/IA_Jump.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Input/Actions/IA_Look.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Input/Actions/IA_Move.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Input/IMC_Default.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Input/Actions/IA_LockOn.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Input/Actions/IA_Cast_Light.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Input/Actions/IA_Crouch.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Effects/Materials/M_ManaMaster.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Effects/Textures/T_Radialflare011.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Effects/Textures/T_VoronoiNoiseCA001.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Data/DT_ElementData.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/7/GO/1COPHTPDDP96659EW24AFV.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/D/GE/1EPXN7TUK14NVQL6WXGTDU.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Enemies/Meshes/SM_Wisp_PhysicsAsset.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/D/DE/SWSI13675DVYIZ0N4NF7Y3.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/0/5N/CEXNSO5FAW3E4O98VE72XV.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Effects/NiagaraSystems/NS_WispEnemy.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Enemies/Meshes/SM_Wisp.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Enemies/Meshes/SM_Wisp_Skeleton.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/C/9A/BIX3UXC1KOLXIU1EO5U4FV.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Untitled.umap",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/E/V9/PN8HWCMPR77UTCVE29LDN0.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Enemies/Meshes/SM_Wisp_Physics.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/E/WK/F5YAQ4ERE3AGKMEVVDL0F1.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Enemies/BP_Wisp.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Enemies/AI/AIC_EnemyControllerBase.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Enemies/BP_Route.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/B/UX/OGIAD6BIE8Y9OB6SAF0BNC.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Enemies/BP_Enemy_Base.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/A/49/8W9422I8BEARIQEN3ZWRQZ.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Enemies/BehaviorTrees/BT_Wisp.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Enemies/BehaviorTrees/BB_Wisp.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/Elements/Enemies/BehaviorTrees/Tasks/BTT_MoveAlongRoute.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/6/E3/QYIFAX6WWQIZ2BW0JH75ET.uasset",
+				"A:/Epic/UE/UE_5.4/Engine/Content/Functions/Engine_MaterialFunctions02/ExampleContent/3dParticleOpacity_Mat.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/A/77/6C5PCRJXYAF06BUXHA8XUN.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/ThirdPerson/Input/IMC_Default.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/ThirdPerson/Input/Actions/IA_Move.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/ThirdPerson/Input/Actions/IA_Look.uasset",
+				"B:/UnrealEngine5_Projects/_repos4/Elements/Elements_UE/Content/ThirdPerson/Input/Actions/IA_Jump.uasset"
+			]
+		}
+	]
+}
