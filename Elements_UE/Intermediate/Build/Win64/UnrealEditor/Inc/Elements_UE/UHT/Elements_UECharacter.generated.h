@@ -14,7 +14,15 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define ELEMENTS_UE_Elements_UECharacter_generated_h
 
-#define FID_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_21_INCLASS_NO_PURE_DECLS \
+#define FID_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_16_DELEGATE \
+ELEMENTS_UE_API void FOnAttackFinished_DelegateWrapper(const FMulticastScriptDelegate& OnAttackFinished);
+
+
+#define FID_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_25_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execNotifyAttackFinished);
+
+
+#define FID_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_25_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAElements_UECharacter(); \
 	friend struct Z_Construct_UClass_AElements_UECharacter_Statics; \
@@ -23,7 +31,7 @@ public: \
 	DECLARE_SERIALIZER(AElements_UECharacter)
 
 
-#define FID_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_21_ENHANCED_CONSTRUCTORS \
+#define FID_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_25_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AElements_UECharacter(AElements_UECharacter&&); \
@@ -35,12 +43,13 @@ public: \
 	NO_API virtual ~AElements_UECharacter();
 
 
-#define FID_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_18_PROLOG
-#define FID_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_21_GENERATED_BODY \
+#define FID_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_22_PROLOG
+#define FID_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_25_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_21_INCLASS_NO_PURE_DECLS \
-	FID_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_21_ENHANCED_CONSTRUCTORS \
+	FID_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_25_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_25_INCLASS_NO_PURE_DECLS \
+	FID_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_25_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

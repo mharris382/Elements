@@ -13,7 +13,11 @@ class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAttackFinished);
+
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
+
+
 
 UCLASS(config=Game)
 class AElements_UECharacter : public ACharacter
@@ -47,6 +51,13 @@ class AElements_UECharacter : public ACharacter
 public:
 	AElements_UECharacter();
 	
+
+	// Function to trigger the event dispatcher
+	UFUNCTION(BlueprintCallable, Category = "Actions")
+	void NotifyAttackFinished();
+
+	UPROPERTY(BlueprintAssignable, Category = "Events")
+	FOnAttackFinished OnCharacterAttackFinished;
 
 protected:
 

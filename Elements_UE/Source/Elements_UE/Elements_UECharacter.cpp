@@ -54,6 +54,11 @@ AElements_UECharacter::AElements_UECharacter()
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 }
 
+void AElements_UECharacter::NotifyAttackFinished()
+{
+	OnCharacterAttackFinished.Broadcast();
+}
+
 void AElements_UECharacter::BeginPlay()
 {
 	// Call the base class  
@@ -128,3 +133,6 @@ void AElements_UECharacter::Look(const FInputActionValue& Value)
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
 }
+
+
+
