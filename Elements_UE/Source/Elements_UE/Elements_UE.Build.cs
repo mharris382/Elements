@@ -17,6 +17,8 @@ public class Elements_UE : ModuleRules
 			"EnhancedInput" ,
             "GameplayTags",
 			"GameplayTasks",
+            "GameplayAbilities",
+			"Niagara"
         });
 	}
 }
