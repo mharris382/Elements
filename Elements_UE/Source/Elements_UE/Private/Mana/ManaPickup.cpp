@@ -25,3 +25,18 @@ void AManaPickup::Tick(float DeltaTime)
 
 }
 
+void AManaPickup::SetElementType(FGameplayTag NewElementTag)
+{
+	FElementData ElementData;
+	UElementSubsystem* ElementSubsystem = GetGameInstance()->GetSubsystem<UElementSubsystem>();
+	if (ElementSubsystem)
+	{
+		// Now you can use ElementSubsystem
+		ElementSubsystem->GetElementDataFromTag(NewElementTag, ElementData);
+		UpdateElementVisuals(ElementData);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Log, TEXT("Element Subsystem Not Found"));
+	}
+}

@@ -6,7 +6,7 @@
 #include "Engine/DataTable.h"
 #include "GameplayTagContainer.h"
 #include "Subsystems/GameInstanceSubsystem.h"
-#include "ElementsSubsystem.generated.h"
+#include "ElementSubsystem.generated.h"
 
 
 USTRUCT(BlueprintType)
@@ -27,32 +27,26 @@ struct FElementData : public FTableRowBase
 
     //comma separated list of elements that this element is strong against
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Element")
-    FGameplayTagContainer StrongAgainst;      
-    
+    FGameplayTagContainer StrongAgainst;
+
 };
-
-
-//struct FElementRelationships
-//{
-//	TMap<FGameplayTagContainer, EElementRelationship> Relationships;
-//};
 
 UENUM(BlueprintType)
 enum EElementRelationship : uint8
 {
-	Neutral,
-	Strong,
-	Weak
+    Neutral,
+    Strong,
+    Weak
 };
 
 /**
  * 
  */
 UCLASS()
-class ELEMENTS_UE_API UElementsSubsystem : public UGameInstanceSubsystem
+class ELEMENTS_UE_API UElementSubsystem : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
-
+    
 public:
     // Initialize and deinitialize the subsystem
     virtual void Initialize(FSubsystemCollectionBase& Collection) override;
@@ -62,12 +56,13 @@ public:
 
     UFUNCTION(BlueprintCallable, Category = "Element")
     TEnumAsByte<EElementRelationship> GetElementRelationship(FGameplayTag Attacker, FGameplayTag Defender);
+    
+    bool GetElementDataFromTag(FGameplayTag ElementTag, FElementData& OutElementData);
 
 private:
-	// Store the loaded element data
-	UPROPERTY()
-	TObjectPtr<UDataTable> ElementDataTable;
-
+    // Store the loaded element data
+    UPROPERTY()
+    TObjectPtr<UDataTable> ElementDataTable;
+    FGameplayTag ElementTagBase;
     TMap<FGameplayTag, FGameplayTagContainer> ElementStrongAgainst;
-    
 };
