@@ -40,6 +40,25 @@ void UAttributeSetBase::PostGameplayEffectExecute(const FGameplayEffectModCallba
 
 	AActor* TargetActor = nullptr;
 	AController* TargetController = nullptr;
+
+
+	if (Data.EvaluatedData.Attribute == GetDamageAttribute())
+	{
+
+
+		//TODO: show damage numbers after successful hit
+	}
+	else if (Data.EvaluatedData.Attribute == GetHealthAttribute())
+	{
+		// Handle other health changes.
+		// Health loss should go through Damage.
+		SetHealth(FMath::Clamp(GetHealth(), 0.0f, GetMaxHealth()));
+	} // Health
+	else if (Data.EvaluatedData.Attribute == GetManaAttribute())
+	{
+		// Handle mana changes.
+		SetMana(FMath::Clamp(GetMana(), 0.0f, GetMaxMana()));
+	}
 }
 
 void UAttributeSetBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
