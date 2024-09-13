@@ -11,6 +11,9 @@
 #include "GameFramework/Controller.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "Abilities/ElementsAbilitySystemComponent.h"
+#include "Abilities/AttributeSets/AttributeSetBase.h"
+#include "Abilities/AttributeSets/CharacterAttributeSet.h"
 #include "InputActionValue.h"
 
 // Sets default values
@@ -55,11 +58,54 @@ UAbilitySystemComponent* ACharacterBase::GetAbilitySystemComponent() const
 	return AbilitySystemComponent.Get();
 }
 
+bool ACharacterBase::IsAlive() const
+{
+	return false;
+}
+
+void ACharacterBase::RemoveCharacterAbilities()
+{
+	if (GetLocalRole() != ROLE_Authority || !AbilitySystemComponent.IsValid() || !AbilitySystemComponent->bCharacterAbilitiesGiven)
+	{
+		return;
+	}
+
+	// Remove any abilities added from a previous call. This checks to make sure the ability is in the startup 'CharacterAbilities' array.
+	TArray<FGameplayAbilitySpecHandle> AbilitiesToRemove;
+	for (const FGameplayAbilitySpec& Spec : AbilitySystemComponent->GetActivatableAbilities())
+	{
+		if ((Spec.SourceObject == this) && CharacterAbilities.Contains(Spec.Ability->GetClass()))
+		{
+			AbilitiesToRemove.Add(Spec.Handle);
+		}
+	}
+
+	// Do in two passes so the removal happens after we have the full list
+	for (int32 i = 0; i < AbilitiesToRemove.Num(); i++)
+	{
+		AbilitySystemComponent->ClearAbility(AbilitiesToRemove[i]);
+	}
+
+	AbilitySystemComponent->bCharacterAbilitiesGiven = false;
+}
+
 // Called when the game starts or when spawned
 void ACharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+void ACharacterBase::AddCharacterAbilities()
+{
+}
+
+void ACharacterBase::InitializeAttributes()
+{
+}
+
+void ACharacterBase::AddStartupEffects()
+{
 }
 
 // Called every frame
@@ -78,9 +124,51 @@ void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 void ACharacterBase::Die()
 {
+	RemoveCharacterAbilities();
+	if (DeathMontage)
+	{
+		GetMesh()->GetAnimInstance()->Montage_Play(DeathMontage);
+	}
 }
 
 void ACharacterBase::FinishDying()
 {
 }
+
+float ACharacterBase::GetHealth() const
+{
+	if (AttributeSetBase.IsValid())
+	{
+		return AttributeSetBase->GetHealth();
+	}
+	return 0.0f;
+}
+
+float ACharacterBase::GetMaxHealth() const
+{
+	if (AttributeSetBase.IsValid())
+	{
+		return AttributeSetBase->GetMaxHealth();
+	}
+	return 0.0f;
+}
+
+float ACharacterBase::GetMana() const
+{
+	if (AttributeSetBase.IsValid())
+	{
+		return AttributeSetBase->GetMana();
+	}
+	return 0.0f;
+}
+
+float ACharacterBase::GetMaxMana() const
+{
+	if (AttributeSetBase.IsValid())
+	{
+		return AttributeSetBase->GetMaxMana();
+	}
+	return 0.0f;
+}
+
 

@@ -10,6 +10,7 @@
 #include "GameFramework/Controller.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "Player/ElementsPlayerState.h"
 #include "InputActionValue.h"
 
 
@@ -50,6 +51,23 @@ AMage::AMage()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
+}
+
+void AMage::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+	AElementsPlayerState* PS = GetPlayerState<AElementsPlayerState>();
+	if (PS) 
+	{
+		AbilitySystemComponent = Cast<UElementsAbilitySystemComponent>(PS->GetAbilitySystemComponent());
+
+		// AI won't have PlayerControllers so we can init again here just to be sure. No harm in initing twice for heroes that have PlayerControllers.
+		//PlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(PlayerState, this);
+
+		AttributeSetBase = PS->GetAttributeSetBase();
+
+
+	}
 }
 
 void AMage::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -108,4 +126,16 @@ void AMage::Look(const FInputActionValue& Value)
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
+}
+
+void AMage::BeginJump()
+{
+	//TODO: replace with Jump Ability
+	Jump();
+}
+
+void AMage::EndJump()
+{
+	//TODO: replace with Jump Ability
+	StopJumping();
 }

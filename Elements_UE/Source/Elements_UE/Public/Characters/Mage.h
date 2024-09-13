@@ -50,6 +50,8 @@ public:
 
 protected:
 
+	virtual void PossessedBy(AController* NewController) override;
+
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	// To add mapping context
@@ -60,4 +62,9 @@ protected:
 
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
+
+
+	void BeginJump();
+
+	void EndJump();
 };
