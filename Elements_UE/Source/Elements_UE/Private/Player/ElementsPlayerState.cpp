@@ -77,18 +77,37 @@ float AElementsPlayerState::GetManaRegen() const
 
 void AElementsPlayerState::BeginPlay()
 {
+	Super::BeginPlay();
+
+	if (AbilitySystemComponent) 
+	{
+		HealthChangedDelegateHandle = AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AttributeSet->GetHealthAttribute()).AddUObject(this, &AElementsPlayerState::HealthChanged);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("PlayerState Failed to validate Ability System Component"));
+	}
 }
 
 void AElementsPlayerState::HealthChanged(const FOnAttributeChangeData& Data)
 {
 	//TODO: implement health GUI
-
+	if (GEngine) 
+	{
+		float NewHealth = Data.NewValue;
+		FString DebugMessage = FString::Printf(TEXT("PlayerState HealthChanged: %f"), NewHealth);
+		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, DebugMessage);
+	}
 	AMage* Mage = Cast<AMage>(GetPawn());
 	if (!IsAlive() && !AbilitySystemComponent->HasMatchingGameplayTag(DeadTag))
 	{
 		if (Mage) 
 		{
 			Mage->Die();
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("HealthChanged: %f"), Data.NewValue);
 		}
 	}
 	

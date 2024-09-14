@@ -59,14 +59,34 @@ void AMage::PossessedBy(AController* NewController)
 	AElementsPlayerState* PS = GetPlayerState<AElementsPlayerState>();
 	if (PS) 
 	{
+		
 		AbilitySystemComponent = Cast<UElementsAbilitySystemComponent>(PS->GetAbilitySystemComponent());
 
 		// AI won't have PlayerControllers so we can init again here just to be sure. No harm in initing twice for heroes that have PlayerControllers.
 		//PlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(PlayerState, this);
 
 		AttributeSetBase = PS->GetAttributeSetBase();
+		if (GEngine) {
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("Initialized Mage Ability System from PlayerState"));
+		}
+		InitializeAttributes();
 
+		// Forcibly set the DeadTag count to 0
+		AbilitySystemComponent->SetTagMapCount(DeadTag, 0);
 
+		// Set Health/Mana/Stamina to their max. This is only necessary for *Respawn*.
+		SetHealth(GetMaxHealth());
+		SetMana(GetMaxMana());
+		
+
+		AddStartupEffects();
+
+		AddCharacterAbilities();
+	}
+	else {
+		if (GEngine) {
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("No PlayerState of Type AElementsPlayerState found"));
+		}
 	}
 }
 
@@ -98,6 +118,10 @@ void AMage::BeginPlay()
 
 void AMage::Move(const FInputActionValue& Value)
 {
+	if (!IsAlive()) 
+	{
+		return;
+	}
 	FVector2D MovementVector = Value.Get<FVector2D>();
 	if (Controller != nullptr) {
 		// find out which way is forward
@@ -118,6 +142,11 @@ void AMage::Move(const FInputActionValue& Value)
 
 void AMage::Look(const FInputActionValue& Value)
 {
+	if (!IsAlive())
+	{
+		return;
+	}
+
 	FVector2D LookAxisVector = Value.Get<FVector2D>();
 
 	if (Controller != nullptr)

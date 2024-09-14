@@ -41,14 +41,27 @@ void AEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (AbilitySystemComponent.IsValid()) 
+	if (GEngine) {
+		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("Begin Play"));
+	}
+
+	if (AbilitySystemComponent.IsValid())
 	{
 		AbilitySystemComponent->InitAbilityActorInfo(this, this);
 		InitializeAttributes();
+		if (AttributeSetBase->GetMaxHealth() == 0 && GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("Initialized Attributes but Max Health is still ZERO!!! :( "));
+		}
 		AddStartupEffects();
 		AddCharacterAbilities();
+		if (GEngine) {
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("Initialized Enemy Abilities"));
+		}
+		UE_LOG(LogTemp, Error, TEXT("Initialized Enemy Abilities"));
 
 
+		
 		//UI STUFF WOULD GO HERE
 
 		// Setup FloatingStatusBar UI for Locally Owned Players only, not AI or the server's copy of the PlayerControllers
@@ -69,7 +82,7 @@ void AEnemyCharacter::BeginPlay()
 		//		}
 		//	}
 		//}
-
+		
 		// Attribute change callbacks
 		HealthChangedDelegateHandle = AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AttributeSetBase->GetHealthAttribute()).AddUObject(this, &AEnemyCharacter::HealthChanged);
 
@@ -77,6 +90,9 @@ void AEnemyCharacter::BeginPlay()
 	}
 	else 
 	{
+		if (GEngine) {
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("Failed to validateAbility system component"));
+		}
 		UE_LOG(LogTemp, Error, TEXT("Failed to find valid Ability System Component on EnemyCharacter"));
 	}
 }

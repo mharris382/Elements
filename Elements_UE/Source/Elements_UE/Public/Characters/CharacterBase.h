@@ -64,6 +64,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Elements|Character|Attributes")
 	float GetMaxMana() const;
 
+	UFUNCTION(BlueprintCallable, Category = "Elements|Character|Attributes")
+	float GetCharacterLevel() const;
 
 protected:
 
@@ -113,4 +115,11 @@ protected:
 	virtual void InitializeAttributes();
 
 	virtual void AddStartupEffects();
+
+	/**
+* Setters for Attributes. Only use these in special cases like Respawning, otherwise use a GE to change Attributes.
+* These change the Attribute's Base Value.
+*/
+	virtual void SetHealth(float Health);
+	virtual void SetMana(float Mana);
 };

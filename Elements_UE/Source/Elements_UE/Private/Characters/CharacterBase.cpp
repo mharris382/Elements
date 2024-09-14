@@ -60,7 +60,7 @@ UAbilitySystemComponent* ACharacterBase::GetAbilitySystemComponent() const
 
 bool ACharacterBase::IsAlive() const
 {
-	return false;
+	return GetHealth() > 0;
 }
 
 void ACharacterBase::RemoveCharacterAbilities()
@@ -98,14 +98,70 @@ void ACharacterBase::BeginPlay()
 
 void ACharacterBase::AddCharacterAbilities()
 {
+	if (GetLocalRole() != ROLE_Authority || !AbilitySystemComponent.IsValid() || AbilitySystemComponent->bCharacterAbilitiesGiven)
+	{
+		return;
+	}
+	for (TSubclassOf<UElementsGameplayAbility>& StartupAbility : CharacterAbilities)
+	{
+		AbilitySystemComponent->GiveAbility(FGameplayAbilitySpec(StartupAbility, 1, 0, this));
+	}
+
+	AbilitySystemComponent->bCharacterAbilitiesGiven = true;
 }
 
 void ACharacterBase::InitializeAttributes()
 {
+	if (!AbilitySystemComponent.IsValid())
+	{
+		if (GEngine) {
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("No Ability System Component!!!"));
+		}
+		UE_LOG(LogTemp, Error, TEXT("%s() Missing Ability System Component."), *FString(__FUNCTION__), *GetName());
+		return;
+	}
+	if (!DefaultAttributes)
+	{
+		if (GEngine) {
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("No Default Attributes!!!"));
+		}
+		UE_LOG(LogTemp, Error, TEXT("%s() Missing DefaultAttributes for %s. Please fill in the character's Blueprint."), *FString(__FUNCTION__), *GetName());
+		return;
+	}
+
+	// Can run on Server and Client
+	FGameplayEffectContextHandle EffectContext = AbilitySystemComponent->MakeEffectContext();
+	EffectContext.AddSourceObject(this);
+
+	FGameplayEffectSpecHandle NewHandle = AbilitySystemComponent->MakeOutgoingSpec(DefaultAttributes, GetCharacterLevel(), EffectContext);
+	if (NewHandle.IsValid())
+	{
+		FActiveGameplayEffectHandle ActiveGEHandle = AbilitySystemComponent->ApplyGameplayEffectSpecToTarget(*NewHandle.Data.Get(), AbilitySystemComponent.Get());
+	}
+
+	if (GEngine) {
+		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("No Ability System Component!!!"));
+	}
 }
 
 void ACharacterBase::AddStartupEffects()
 {
+	if (GetLocalRole() != ROLE_Authority || !AbilitySystemComponent.IsValid() || AbilitySystemComponent->bStartupEffectsApplied)
+	{
+		return;
+	}
+	FGameplayEffectContextHandle EffectContext = AbilitySystemComponent->MakeEffectContext();
+	EffectContext.AddSourceObject(this);
+
+	for (TSubclassOf<UGameplayEffect> GameplayEffect : StartupEffects)
+	{
+		FGameplayEffectSpecHandle NewHandle = AbilitySystemComponent->MakeOutgoingSpec(GameplayEffect, GetCharacterLevel(), EffectContext);
+		if (NewHandle.IsValid())
+		{
+			FActiveGameplayEffectHandle ActiveGEHandle = AbilitySystemComponent->ApplyGameplayEffectSpecToTarget(*NewHandle.Data.Get(), AbilitySystemComponent.Get());
+		}
+		AbilitySystemComponent->bStartupEffectsApplied = true;
+	}
 }
 
 // Called every frame
@@ -125,14 +181,33 @@ void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 void ACharacterBase::Die()
 {
 	RemoveCharacterAbilities();
+	if (GEngine) {
+		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("Character Died!!!"));
+	}
+	OnCharacterDied.Broadcast(this);
+	if (AbilitySystemComponent.IsValid())
+	{
+		AbilitySystemComponent->CancelAllAbilities();
+		FGameplayTagContainer EffectTagsToRemove;
+		EffectTagsToRemove.AddTag(EffectRemoveOnDeathTag);
+
+		int32 NumEffectsRemoved = AbilitySystemComponent->RemoveActiveEffectsWithTags(EffectTagsToRemove);
+
+		AbilitySystemComponent->AddLooseGameplayTag(DeadTag);
+	}
 	if (DeathMontage)
 	{
-		GetMesh()->GetAnimInstance()->Montage_Play(DeathMontage);
+		PlayAnimMontage(DeathMontage);
+	}
+	else 
+	{
+		FinishDying();
 	}
 }
 
 void ACharacterBase::FinishDying()
 {
+	Destroy();
 }
 
 float ACharacterBase::GetHealth() const
@@ -171,4 +246,24 @@ float ACharacterBase::GetMaxMana() const
 	return 0.0f;
 }
 
+float ACharacterBase::GetCharacterLevel() const
+{
+	return 1.0f;
+}
 
+
+void ACharacterBase::SetHealth(float Health)
+{
+	if (AttributeSetBase.IsValid())
+	{
+		AttributeSetBase->SetHealth(Health);
+	}
+}
+
+void ACharacterBase::SetMana(float Mana)
+{
+	if (AttributeSetBase.IsValid())
+	{
+		AttributeSetBase->SetMana(Mana);
+	}
+}

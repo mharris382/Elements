@@ -23,11 +23,11 @@ public:
 	AEnemyCharacter(const class FObjectInitializer& ObjectInitializer);
 
 protected:
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Abilities", meta = (AllowPrivateAccess = "true"))
 	UElementsAbilitySystemComponent* HardRefAbilitySystemComponent;
 
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Attributes", meta = (AllowPrivateAccess = "true"))
 	UCharacterAttributeSet* HardRefAttributeSetBase;
 
 
