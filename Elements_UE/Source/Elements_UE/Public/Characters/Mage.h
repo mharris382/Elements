@@ -45,6 +45,8 @@ class ELEMENTS_UE_API AMage : public ACharacterBase
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* LookAction;
 
+	virtual void FinishDying() override;
+
 public:
 	AMage();
 

@@ -42,3 +42,4 @@ B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\BuildR
 B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\BuildRulesProjects\Elements_UEModuleRules\obj\Development\Elements_UEModuleRules.dll
 B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\BuildRulesProjects\Elements_UEModuleRules\obj\Development\refint\Elements_UEModuleRules.dll
 B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\BuildRulesProjects\Elements_UEModuleRules\obj\Development\Elements_UEModuleRules.pdb
+B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\BuildRulesProjects\Elements_UEModuleRules\obj\Development\Elements_UEModuleRules.sourcelink.json

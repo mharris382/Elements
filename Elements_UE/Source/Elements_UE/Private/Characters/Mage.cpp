@@ -12,11 +12,15 @@
 #include "EnhancedInputSubsystems.h"
 #include "Player/ElementsPlayerState.h"
 #include "InputActionValue.h"
+#include "ElementsGameMode.h"
+
 
 
 
 AMage::AMage()
 {
+
+
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 
@@ -51,6 +55,12 @@ AMage::AMage()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
+
+}
+
+void AMage::BeginPlay()
+{
+	Super::BeginPlay();
 }
 
 void AMage::PossessedBy(AController* NewController)
@@ -111,9 +121,18 @@ void AMage::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	}
 }
 
-void AMage::BeginPlay()
+
+
+void AMage::FinishDying()
 {
-	Super::BeginPlay();
+	if (GetLocalRole() == ROLE_Authority)
+	{
+		AElementsGameMode* GM = Cast<AElementsGameMode>(GetWorld()->GetAuthGameMode());
+		if (GM) {
+			GM->HeroDied(GetController());
+		}
+	}
+	Super::FinishDying();
 }
 
 void AMage::Move(const FInputActionValue& Value)

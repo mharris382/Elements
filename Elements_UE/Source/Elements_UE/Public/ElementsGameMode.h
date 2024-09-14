@@ -17,13 +17,13 @@ class ELEMENTS_UE_API AElementsGameMode : public AGameMode
 public:
 	AElementsGameMode();
 
+	void HeroDied(AController* Character);
+
 protected:
 	float RespawnDelay;
 
 	TSubclassOf<ACharacterBase> PlayerPawnClass;
 
-
-	void HeroDied(AController* Character);
 
 	void RespawnHero(AController* Controller);
 };

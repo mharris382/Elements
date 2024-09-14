@@ -15,7 +15,7 @@ AElementsGameMode::AElementsGameMode()
 {
 	RespawnDelay = 5.0f;
 
-	PlayerPawnClass = StaticLoadClass(UObject::StaticClass(), nullptr, TEXT("/Game/Elements/Blueprints/BP_Mage"));
+	PlayerPawnClass = StaticLoadClass(UObject::StaticClass(), nullptr, TEXT("/Game/Elements/Blueprints/BP_Mage.BP_Mage_C"));
 
 	if (!PlayerPawnClass)
 	{
@@ -28,15 +28,61 @@ void AElementsGameMode::HeroDied(AController* Controller)
 	FActorSpawnParameters SpawnParameters;
 	SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
 	ASpectatorPawn* SpectatorPawn = GetWorld()->SpawnActor<ASpectatorPawn>(SpectatorClass, Controller->GetPawn()->GetActorTransform(), SpawnParameters);
-
+	
 	Controller->UnPossess();
 	Controller->Possess(SpectatorPawn);
+	FTimerHandle RespawnTimerHandle;
+	FTimerDelegate RespawnDelegate;
+	if (GEngine) 
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("GameMode: Respawning Hero in 5 seconds"));
+	}
+	RespawnDelegate = FTimerDelegate::CreateUObject(this, &AElementsGameMode::RespawnHero, Controller);
+	GetWorldTimerManager().SetTimer(RespawnTimerHandle, RespawnDelegate, RespawnDelay, false);
 
-	//FTimerDelegate::CreateUObject(this, &AElementsGameMode::RespawnHero, Controller);
+
+	//TODO: Show some kind of respawn countdown on the player's screen
+	/*AGDPlayerController* PC = Cast<AGDPlayerController>(Controller);
+	if (PC)
+	{
+		PC->SetRespawnCountdown(RespawnDelay);
+	}*/
 }
 
 void AElementsGameMode::RespawnHero(AController* Controller)
 {
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("GameMode: Respawning Hero Now"));
+	}
+	if (!Controller) {
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("GameMode: Cannot Respawn Hero, Controller is null"));
+		}
+		return;
+	}
+	if (Controller->IsPlayerController())
+	{
+		AActor* PlayerStart = FindPlayerStart(Controller);
+		FActorSpawnParameters SpawnParameters;
+		SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
 
+		ACharacterBase* Mage = GetWorld()->SpawnActor<ACharacterBase>(PlayerPawnClass, PlayerStart->GetActorTransform(), SpawnParameters);
+
+		APawn* OldSpectatorPawn = Controller->GetPawn();
+		Controller->UnPossess();
+		if (OldSpectatorPawn)
+		{
+			OldSpectatorPawn->Destroy();
+		}
+		Controller->Possess(Mage);
+	}
+	else {
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("GameMode: Failed to Respawn Hero because Controller is not a player"));
+		}
+	}
 
 }
