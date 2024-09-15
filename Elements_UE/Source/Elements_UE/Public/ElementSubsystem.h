@@ -56,6 +56,12 @@ public:
 
     UFUNCTION(BlueprintCallable, Category = "Element")
     TEnumAsByte<EElementRelationship> GetElementRelationship(FGameplayTag Attacker, FGameplayTag Defender);
+
+
+
+    UFUNCTION(BlueprintCallable, Category = "Element")
+    void SpawnManaPickup(FVector Location, FGameplayTag ElementTag, float ManaAmount, AActor* Source);
+
     
     bool GetElementDataFromTag(FGameplayTag ElementTag, FElementData& OutElementData);
 
@@ -63,6 +69,9 @@ private:
     // Store the loaded element data
     UPROPERTY()
     TObjectPtr<UDataTable> ElementDataTable;
+
+    TSubclassOf<class AManaPickup> ManaPickupClass;
+
     FGameplayTag ElementTagBase;
     TMap<FGameplayTag, FGameplayTagContainer> ElementStrongAgainst;
 };

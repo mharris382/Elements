@@ -1,13 +1,19 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "ElementSubsystem.h"
+#include "Mana/ManaPickup.h"
 
 void UElementSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
 	FString DataTablePath = TEXT("/Game/Data/DT_ElementData");
 	ElementDataTable = Cast<UDataTable>(StaticLoadObject(UDataTable::StaticClass(), nullptr, *DataTablePath));
+
+	ManaPickupClass = StaticLoadClass(UObject::StaticClass(), nullptr, TEXT("/Game/Elements/Blueprints/BP_ManaPickup.BP_ManaPickup"));
+	if (!ManaPickupClass)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Mana Pickup Class Not Found"));
+	}
 	if (ElementDataTable)
 	{
 		UE_LOG(LogTemp, Log, TEXT("Element Data Table Loaded"));
@@ -70,6 +76,32 @@ TEnumAsByte<EElementRelationship> UElementSubsystem::GetElementRelationship(FGam
 	else
 	{
 		return EElementRelationship::Neutral;
+	}
+}
+
+void UElementSubsystem::SpawnManaPickup(FVector Location, FGameplayTag ElementTag, float ManaAmount, AActor* Source)
+{
+	if (ManaPickupClass)
+	{
+		
+		AManaPickup* ManaPickup = GetWorld()->SpawnActor<AManaPickup>(ManaPickupClass, Location, FRotator::ZeroRotator);
+		if (ManaPickup)
+		{
+			ManaPickup->SetManaAmount(ManaAmount);
+			ManaPickup->SetElementType(ElementTag);
+			if (Source) 
+			{
+				ManaPickup->SetSourceAndTarget(Source, Location);
+			}
+		}
+		else
+		{
+			UE_LOG(LogTemp, Error, TEXT("Mana Pickup Not Spawned"));
+		}
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Mana Pickup Class Not Found"));
 	}
 }
 

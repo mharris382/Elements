@@ -98,13 +98,15 @@ void ACharacterBase::BeginPlay()
 
 void ACharacterBase::AddCharacterAbilities()
 {
+	// Grant abilities, but only on the server	
 	if (GetLocalRole() != ROLE_Authority || !AbilitySystemComponent.IsValid() || AbilitySystemComponent->bCharacterAbilitiesGiven)
 	{
 		return;
 	}
 	for (TSubclassOf<UElementsGameplayAbility>& StartupAbility : CharacterAbilities)
 	{
-		AbilitySystemComponent->GiveAbility(FGameplayAbilitySpec(StartupAbility, 1, 0, this));
+		AbilitySystemComponent->GiveAbility(
+			FGameplayAbilitySpec(StartupAbility, 1, static_cast<int32>(StartupAbility.GetDefaultObject()->InputID), this));
 	}
 
 	AbilitySystemComponent->bCharacterAbilitiesGiven = true;
@@ -208,6 +210,12 @@ void ACharacterBase::Die()
 void ACharacterBase::FinishDying()
 {
 	Destroy();
+}
+
+FGameplayTag ACharacterBase::GetCharacterElement()
+{
+	//TODO: replace this with dynamic element if element changes (i.e. mage switches element)
+	return CharacterElementTag;
 }
 
 float ACharacterBase::GetHealth() const

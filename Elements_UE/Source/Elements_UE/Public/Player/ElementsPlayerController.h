@@ -13,5 +13,14 @@ UCLASS()
 class ELEMENTS_UE_API AElementsPlayerController : public APlayerController
 {
 	GENERATED_BODY()
-	
+
+public:
+
+	void CreateHUD();
+
+protected:
+
+	virtual void OnPossess(APawn* InPawn) override;
+
+	virtual void OnRep_PlayerState() override;
 };

@@ -10,6 +10,8 @@
 #include "GameFramework/Controller.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "GameplayTagContainer.h"
+#include "Subsystems/GameInstanceSubsystem.h"
 #include "Player/ElementsPlayerState.h"
 #include "InputActionValue.h"
 #include "ElementsGameMode.h"
@@ -56,6 +58,8 @@ AMage::AMage()
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 
+	
+
 }
 
 void AMage::BeginPlay()
@@ -77,7 +81,7 @@ void AMage::PossessedBy(AController* NewController)
 
 		AttributeSetBase = PS->GetAttributeSetBase();
 		if (GEngine) {
-			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("Initialized Mage Ability System from PlayerState"));
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("AMage::SetupPlayerInputComponent: Initialized Mage Ability System from PlayerState"));
 		}
 		InitializeAttributes();
 
@@ -95,7 +99,7 @@ void AMage::PossessedBy(AController* NewController)
 	}
 	else {
 		if (GEngine) {
-			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("No PlayerState of Type AElementsPlayerState found"));
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("AMage::SetupPlayerInputComponent: No PlayerState of Type AElementsPlayerState found"));
 		}
 	}
 }
@@ -114,11 +118,32 @@ void AMage::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	{
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AMage::Move);
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMage::Look);
+		for (const FInputAbilityMapping& Mapping : InputAbilityMappings)
+		{
+			if (Mapping.AbilityTags.IsValid() && Mapping.InputAction)
+			{
+				EnhancedInputComponent->BindAction(Mapping.InputAction, ETriggerEvent::Started, this, &AMage::HandleAbilityInputPressed, Mapping.InputID);
+				EnhancedInputComponent->BindAction(Mapping.InputAction, ETriggerEvent::Completed, this, &AMage::HandleAbilityInputReleased, Mapping.InputID);
+			}
+			else
+			{
+				UE_LOG(LogTemp, Error, TEXT("AMage::SetupPlayerInputComponent: AbilityTag or InputAction is not valid"))
+			}
+			/*if (Mapping.AbilityTag.IsValid())
+			{
+				EnhancedInputComponent->BindAction(Mapping.InputAction, Mapping.TriggerEvent, this, Mapping.AbilityTag, Mapping.AbilityInputID);
+			}
+			else
+			{
+				UE_LOG(LogTemp, Error, TEXT("AbilityTag is not valid"))
+			}*/
+		}
 	}
 	else
 	{
-			UE_LOG(LogTemp, Error, TEXT("PlayerInputComponent is not EnhancedInputComponent"));
+			UE_LOG(LogTemp, Error, TEXT("AMage::SetupPlayerInputComponent: PlayerInputComponent is not EnhancedInputComponent"));
 	}
+	
 }
 
 
@@ -187,3 +212,45 @@ void AMage::EndJump()
 	//TODO: replace with Jump Ability
 	StopJumping();
 }
+
+void AMage::HandleAbilityInputPressed(EAbilityInputID InputID)
+{
+	if (AbilitySystemComponent.IsValid()) 
+	{
+		AbilitySystemComponent->AbilityLocalInputPressed(static_cast<int32>(InputID));
+	}
+	else {
+		UE_LOG(LogTemp, Error, TEXT("Mage.HandleAbilityInputPressed: AbilitySystemComponent is not valid"));
+	}
+}
+
+void AMage::HandleAbilityInputReleased(EAbilityInputID InputID)
+{
+
+
+	if (AbilitySystemComponent.IsValid())
+	{
+		AbilitySystemComponent->AbilityLocalInputReleased(static_cast<int32>(InputID));
+	}
+	else 
+	{
+		UE_LOG(LogTemp, Error, TEXT("Mage.HandleAbilityInputReleased: AbilitySystemComponent is not valid"));
+	}
+}
+
+//void AMage::HandleAbilityInputPressed(FGameplayTagContainer AbilityTag)
+//{
+//	if (AbilitySystemComponent.IsValid())
+//	{
+//		AbilitySystemComponent->TryActivateAbilitiesByTag(AbilityTag);
+//	}
+//}
+//
+//void AMage::HandleAbilityInputReleased(FGameplayTagContainer AbilityTag)
+//{
+//	if (AbilitySystemComponent.IsValid()) 
+//	{
+//		TArray<FGameplayAbilitySpecHandle> AbilitySpecHandles;
+//		AbilitySystemComponent->FindAllAbilitiesWithTags(AbilitySpecHandles, AbilityTag);
+//	}
+//}

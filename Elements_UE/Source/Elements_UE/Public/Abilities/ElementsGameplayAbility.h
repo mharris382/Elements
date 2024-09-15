@@ -6,6 +6,23 @@
 #include "Abilities/GameplayAbility.h"
 #include "ElementsGameplayAbility.generated.h"
 
+
+UENUM(BlueprintType)
+enum class EAbilityInputID : uint8
+{
+	// 0 None
+	None			UMETA(DisplayName = "None"),
+	Jump			UMETA(DisplayName = "Jump"),
+	Dash			UMETA(DisplayName = "Dash"),
+	Cast1			UMETA(DisplayName = "QuickCast"),
+	Cast2			UMETA(DisplayName = "HeavyCast"),
+	Cast3			UMETA(DisplayName = "SpecialCast"),
+	Block			UMETA(DisplayName = "Block"),
+	Parry			UMETA(DisplayName = "Parry"),
+	SwitchElement	UMETA(DisplayName = "SwitchElement")
+};
+
+
 /**
  * 
  */
@@ -16,6 +33,8 @@ class ELEMENTS_UE_API UElementsGameplayAbility : public UGameplayAbility
 public:
 	UElementsGameplayAbility();
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Ability")
+	EAbilityInputID InputID = EAbilityInputID::None;
 
 	// Tells an ability to activate immediately when its granted. Used for passive abilities and abilities forced on others.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Ability")

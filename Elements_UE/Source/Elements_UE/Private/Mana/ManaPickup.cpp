@@ -2,6 +2,7 @@
 
 
 #include "Mana/ManaPickup.h"
+#include "Characters/CharacterBase.h"
 
 // Sets default values
 AManaPickup::AManaPickup()
@@ -23,6 +24,30 @@ void AManaPickup::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void AManaPickup::SetSourceAndTarget_Implementation(AActor* NewSourceActor, FVector TargetLocation)
+{
+}
+
+bool AManaPickup::CanBePickedUpBy(ACharacterBase* Character) const
+{
+	if (!Character) {
+		return false;
+	}
+	FGameplayTag characterElement = Character->GetCharacterElement();
+	if (characterElement.IsValid() && characterElement.MatchesTagExact(ElementTag))
+	{
+		return true;
+	}
+	return false;
+}
+
+void AManaPickup::SetManaAmount(float NewManaAmount)
+{
+	ManaAmount = NewManaAmount;
+	//Set Element Type to update visuals based on the new mana amount
+	SetElementType(ElementTag);
 }
 
 void AManaPickup::SetElementType(FGameplayTag NewElementTag)

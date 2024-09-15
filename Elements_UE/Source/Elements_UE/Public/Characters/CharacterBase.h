@@ -23,6 +23,9 @@ public:
 	// Sets default values for this character's properties
 	ACharacterBase();
 
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Elements|Character")
+	FGameplayTag CharacterElementTag;
+
 
 	UPROPERTY(BlueprintAssignable, Category = "Elements|Character")
 	FCharacterDiedDelegate OnCharacterDied;
@@ -50,7 +53,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Elements|Character")
 	virtual void FinishDying();
 
-
+	UFUNCTION(BlueprintCallable, Category = "Elements|Character")
+	virtual FGameplayTag GetCharacterElement();
 
 	UFUNCTION(BlueprintCallable, Category = "Elements|Character|Attributes")
 	float GetHealth() const;
@@ -66,6 +70,8 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Elements|Character|Attributes")
 	float GetCharacterLevel() const;
+
+	
 
 protected:
 

@@ -20,6 +20,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Meta = (ExposeOnSpawn = true))
 	FGameplayTag ElementTag;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Meta = (ExposeOnSpawn = true))
+	float ManaAmount;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -27,6 +30,18 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	UFUNCTION(BlueprintNativeEvent)
+	void SetSourceAndTarget(AActor* NewSourceActor, FVector TargetLocation);
+
+	void SetSourceAndTarget_Implementation(AActor* NewSourceActor, FVector TargetLocation);
+
+
+	UFUNCTION(BlueprintCallable, Category = "Element")
+	bool CanBePickedUpBy(class ACharacterBase* Character) const;
+
+	UFUNCTION(BlueprintCallable, Category = "Element")
+	void SetManaAmount(float NewManaAmount);
 
 	UFUNCTION(BlueprintCallable, Category = "Element")
 	void SetElementType(FGameplayTag NewElementTag);

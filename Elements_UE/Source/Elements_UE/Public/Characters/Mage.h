@@ -4,6 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Characters/CharacterBase.h"
+#include "GameplayTagContainer.h"
+#include "Subsystems/GameInstanceSubsystem.h"
+#include "Abilities/ElementsGameplayAbility.h"
 #include "Mage.generated.h"
 
 class USpringArmComponent;
@@ -12,6 +15,43 @@ class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
 
+
+UENUM(BlueprintType)
+enum class EInputType : uint8
+{
+	Trigger UMETA(DisplayName = "Trigger"),
+	Hold UMETA(DisplayName = "Hold")
+};
+
+
+
+
+USTRUCT(BlueprintType)
+struct FInputAbilityMapping
+{
+	GENERATED_BODY()
+
+public:
+	// The input action that will trigger the ability
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UInputAction* InputAction;
+
+	// The gameplay tag associated with the ability
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FGameplayTagContainer AbilityTags;
+
+	// Specify if the input is a trigger or hold
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	EInputType InputType;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	EAbilityInputID InputID;
+
+	// Default constructor
+	FInputAbilityMapping()
+		: InputAction(nullptr)
+	{}
+};
 
 /**
  * 
@@ -45,10 +85,15 @@ class ELEMENTS_UE_API AMage : public ACharacterBase
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* LookAction;
 
+
 	virtual void FinishDying() override;
 
 public:
 	AMage();
+
+	// Array of input-action mappings to ability tags
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Abilities")
+	TArray<FInputAbilityMapping> InputAbilityMappings;
 
 protected:
 
@@ -69,4 +114,10 @@ protected:
 	void BeginJump();
 
 	void EndJump();
+
+	virtual void HandleAbilityInputPressed(EAbilityInputID InputID);
+	virtual void HandleAbilityInputReleased(EAbilityInputID InputID);
+
+private: 
+	TMap<FGameplayTag, FInputAbilityMapping> AbilityTagToInputActionMap;
 };
