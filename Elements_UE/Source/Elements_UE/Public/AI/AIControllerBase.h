@@ -13,5 +13,12 @@ UCLASS()
 class ELEMENTS_UE_API AAIControllerBase : public AAIController
 {
 	GENERATED_BODY()
-	
+public:
+
+	AAIControllerBase();
+
+	virtual void OnPossess(APawn* InPawn) override;
+
+	virtual void OnUnPossess() override;
+
 };

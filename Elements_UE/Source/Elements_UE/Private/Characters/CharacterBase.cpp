@@ -58,6 +58,11 @@ UAbilitySystemComponent* ACharacterBase::GetAbilitySystemComponent() const
 	return AbilitySystemComponent.Get();
 }
 
+UCharacterAttributeSet* ACharacterBase::GetAttributeSetBase() const
+{
+	return AttributeSetBase.Get();
+}
+
 bool ACharacterBase::IsAlive() const
 {
 	return GetHealth() > 0;

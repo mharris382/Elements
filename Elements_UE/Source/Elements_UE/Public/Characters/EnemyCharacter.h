@@ -7,6 +7,7 @@
 #include "Abilities/AttributeSets/CharacterAttributeSet.h"
 #include "GameplayEffectTypes.h"
 #include "Characters/CharacterBase.h"
+#include "BehaviorTree/BehaviorTree.h"
 #include "EnemyCharacter.generated.h"
 
 /**
@@ -21,6 +22,9 @@ class ELEMENTS_UE_API AEnemyCharacter : public ACharacterBase
 public:
 
 	AEnemyCharacter(const class FObjectInitializer& ObjectInitializer);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Behavior", meta = (AllowPrivateAccess = "true"))
+	UBehaviorTree* BehaviorTree;
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Abilities", meta = (AllowPrivateAccess = "true"))

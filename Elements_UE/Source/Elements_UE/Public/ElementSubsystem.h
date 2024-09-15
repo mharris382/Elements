@@ -62,7 +62,7 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Element")
     void SpawnManaPickup(FVector Location, FGameplayTag ElementTag, float ManaAmount, AActor* Source);
 
-    
+    UFUNCTION(BlueprintCallable, Category = "Element")
     bool GetElementDataFromTag(FGameplayTag ElementTag, FElementData& OutElementData);
 
 private:

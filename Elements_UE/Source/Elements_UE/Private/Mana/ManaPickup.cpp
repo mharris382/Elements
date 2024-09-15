@@ -3,6 +3,7 @@
 
 #include "Mana/ManaPickup.h"
 #include "Characters/CharacterBase.h"
+#include "Abilities/AttributeSets/CharacterAttributeSet.h"
 
 // Sets default values
 AManaPickup::AManaPickup()
@@ -36,7 +37,14 @@ bool AManaPickup::CanBePickedUpBy(ACharacterBase* Character) const
 		return false;
 	}
 	FGameplayTag characterElement = Character->GetCharacterElement();
-	if (characterElement.IsValid() && characterElement.MatchesTagExact(ElementTag))
+	UCharacterAttributeSet* Attributes = Character->GetAttributeSetBase();
+	if (!Attributes)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("AManaPickup::CanBePickedUpBy: Character %s has no Attributes"), *Character->GetName());
+		return false;
+	}
+	//must be of the same element type and not at max mana
+	if (characterElement.IsValid() && characterElement.MatchesTagExact(ElementTag) && Attributes->GetMana() < Attributes->GetMaxMana())
 	{
 		return true;
 	}

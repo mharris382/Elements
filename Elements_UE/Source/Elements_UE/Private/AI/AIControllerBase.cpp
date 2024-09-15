@@ -2,4 +2,24 @@
 
 
 #include "AI/AIControllerBase.h"
+#include "Characters/EnemyCharacter.h"
 
+AAIControllerBase::AAIControllerBase()
+{
+}
+
+void AAIControllerBase::OnPossess(APawn* InPawn)
+{
+	Super::OnPossess(InPawn);
+
+	AEnemyCharacter* EnemyCharacter = Cast<AEnemyCharacter>(InPawn);
+	if (EnemyCharacter && EnemyCharacter->BehaviorTree)
+	{
+		RunBehaviorTree(EnemyCharacter->BehaviorTree);
+	}
+}
+
+void AAIControllerBase::OnUnPossess()
+{
+	Super::OnUnPossess();
+}

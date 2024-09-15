@@ -33,6 +33,8 @@ public:
 	// Implement IAbilitySystemInterface
 	virtual class UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 
+	virtual UCharacterAttributeSet* GetAttributeSetBase() const;
+
 	UFUNCTION(BlueprintCallable, Category = "Elements|Character")
 	virtual bool IsAlive() const;
 
