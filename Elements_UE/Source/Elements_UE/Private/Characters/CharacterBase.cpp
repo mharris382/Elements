@@ -101,6 +101,42 @@ void ACharacterBase::BeginPlay()
 	
 }
 
+void ACharacterBase::SetCharacterElement(FGameplayTag ElementTag)
+{
+	if (GetLocalRole() < ROLE_Authority)
+	{
+		//TODO: ServerSetCharacterElement(ElementTag);
+		
+	}
+	else
+	{
+		UWorld* World = GetWorld();
+		if (World) {
+			UGameInstance* GameInstance = World->GetGameInstance();
+			if (GameInstance)
+			{
+				UElementSubsystem* ElementSubsystem = GameInstance->GetSubsystem<UElementSubsystem>();
+				if (ElementSubsystem && ElementSubsystem->IsValidElement(ElementTag))
+				{
+					CharacterElementTag = ElementTag;
+					FElementData ElementData;
+					if (ElementSubsystem->GetElementDataFromTag(ElementTag, ElementData))
+					{
+						UpdateCharacterElementVisuals(ElementTag, ElementData);
+					}
+					else {
+						UE_LOG(LogTemp, Warning, TEXT("ACharacterBase::SetCharacterElement: ElementData not found for %s"), *ElementTag.ToString());
+					}
+				}
+			}
+		}
+	}
+}
+
+void ACharacterBase::UpdateCharacterElementVisuals_Implementation(FGameplayTag NewElement, FElementData ElementData)
+{
+}
+
 void ACharacterBase::AddCharacterAbilities()
 {
 	// Grant abilities, but only on the server	

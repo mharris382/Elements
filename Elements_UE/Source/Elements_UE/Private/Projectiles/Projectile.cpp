@@ -2,7 +2,6 @@
 
 
 #include "Projectiles/Projectile.h"
-#include "GameFramework/ProjectileMovementComponent.h"
 
 // Sets default values
 AProjectile::AProjectile()

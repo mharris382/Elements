@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
 #include "GameplayTagContainer.h"
+#include "ElementSubsystem.h"
 #include "Abilities/ElementsGameplayAbility.h"
 #include "Abilities/ElementsAbilitySystemComponent.h"
 #include "Abilities/AttributeSets/CharacterAttributeSet.h"
@@ -112,7 +113,18 @@ protected:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Elements|Abilities")
 	TArray<TSubclassOf<class UGameplayEffect>> StartupEffects;
 
+	UFUNCTION(BlueprintCallable, Category = "Elements|Character")
+	void SetCharacterElement(FGameplayTag ElementTag);
 
+	//UFUNCTION(BlueprintNativeEvent)
+	//bool CanSetCharacterElement(FGameplayTag ElementTag);
+	//
+	//bool CanSetCharacterElement_Implementation(FGameplayTag ElementTag);
+
+	UFUNCTION(BlueprintNativeEvent)
+	void UpdateCharacterElementVisuals(FGameplayTag NewElement, FElementData ElementData);
+
+	void UpdateCharacterElementVisuals_Implementation(FGameplayTag NewElement, FElementData ElementData);
 
 	// Grant abilities on the Server. The Ability Specs will be replicated to the owning client.
 	virtual void AddCharacterAbilities();

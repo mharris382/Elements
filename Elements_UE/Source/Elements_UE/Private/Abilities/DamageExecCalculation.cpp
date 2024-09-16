@@ -63,8 +63,8 @@ void UDamageExecCalculation::Execute_Implementation(const FGameplayEffectCustomE
 	EvaluationParameters.TargetTags = TargetTags;
 
 	float Multiplier = 1.0f;
-	UWorld* World = GetWorld();
 	EElementRelationship Relationship = EElementRelationship::Neutral;
+	UWorld* World = GetWorld();
 	if (World) {
 		UGameInstance* GameInstance = World->GetGameInstance();
 		if (GameInstance) 

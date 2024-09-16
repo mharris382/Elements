@@ -94,6 +94,8 @@ FGameplayTag UElementSubsystem::GetElementTag(FGameplayTagContainer TagContainer
 	return FGameplayTag();
 }
 
+
+
 void UElementSubsystem::SpawnManaPickup(FVector Location, FGameplayTag ElementTag, float ManaAmount, AActor* Source)
 {
 	if (ManaPickupClass)
@@ -138,7 +140,7 @@ bool UElementSubsystem::GetElementDataFromTag(FGameplayTag ElementTag, FElementD
 			FName RowName = FName(*ElementName);
 
 			// Attempt to find the row in the data table
-			FElementData* ElementData = ElementDataTable->FindRow<FElementData>(RowName, TEXT(""));
+			FElementData* ElementData = ElementDataTable->FindRow<FElementData>(RowName, TEXT(""), true);
 
 			// If data is found, assign it to the output and return true
 			if (ElementData)
@@ -147,7 +149,13 @@ bool UElementSubsystem::GetElementDataFromTag(FGameplayTag ElementTag, FElementD
 				return true;  // Element data found
 			}
 		}
+		UE_LOG(LogTemp, Error, TEXT("UElementSubsystem::GetElementDataFromTag: Element Data Not Found for %s"), *ElementName);
 	}
 	return false;
+}
+
+bool UElementSubsystem::IsValidElement(FGameplayTag ElementTag)
+{
+	return ElementTag.IsValid() && ElementTag.MatchesTag(ElementTagBase);
 }
 

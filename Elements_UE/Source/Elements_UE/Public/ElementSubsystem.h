@@ -67,6 +67,9 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Element")
     bool GetElementDataFromTag(FGameplayTag ElementTag, FElementData& OutElementData);
 
+    UFUNCTION(BlueprintCallable, Category = "Element")
+    bool IsValidElement(FGameplayTag ElementTag);
+
 private:
     // Store the loaded element data
     UPROPERTY()

@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "GameplayEffect.h"
-
+#include "GameFramework/ProjectileMovementComponent.h"
 #include "Projectile.generated.h"
 
 UCLASS()
@@ -26,7 +26,7 @@ public:
 	//UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 	//class UProjectileMovementComponent* ProjectileMovement;
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
-	class UProjectileMovementComponent* ProjectileMovement;
+	UProjectileMovementComponent* ProjectileMovement;
 
 protected:
 	// Called when the game starts or when spawned
