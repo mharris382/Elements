@@ -51,6 +51,7 @@ ACharacterBase::ACharacterBase()
 	HitDirectionLeftTag = FGameplayTag::RequestGameplayTag(FName("Effect.HitReact.Left"));
 	DeadTag = FGameplayTag::RequestGameplayTag(FName("State.Dead"));
 	EffectRemoveOnDeathTag = FGameplayTag::RequestGameplayTag(FName("Effect.RemoveOnDeath"));
+	NoMovementTag = FGameplayTag::RequestGameplayTag(FName("State.NoMovement"));
 }
 
 UAbilitySystemComponent* ACharacterBase::GetAbilitySystemComponent() const
@@ -98,6 +99,7 @@ void ACharacterBase::RemoveCharacterAbilities()
 void ACharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
+	SetCharacterElement(CharacterElementTag);
 	
 }
 
@@ -298,6 +300,16 @@ float ACharacterBase::GetMaxMana() const
 float ACharacterBase::GetCharacterLevel() const
 {
 	return 1.0f;
+}
+
+bool ACharacterBase::CanMove()
+{
+	if (AbilitySystemComponent.IsValid())
+	{
+		return !AbilitySystemComponent->HasMatchingGameplayTag(NoMovementTag);
+	}
+	UE_LOG(LogTemp, Error, TEXT("ACharacterBase::CanMove: AbilitySystemComponent not valid"));
+	return true;
 }
 
 

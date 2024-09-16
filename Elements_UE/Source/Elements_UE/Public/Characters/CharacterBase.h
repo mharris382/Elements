@@ -74,7 +74,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Elements|Character|Attributes")
 	float GetCharacterLevel() const;
 
-	
+	UFUNCTION(BlueprintCallable, Category = "Elements|Character")
+	bool CanMove();
 
 protected:
 
@@ -142,4 +143,7 @@ protected:
 */
 	virtual void SetHealth(float Health);
 	virtual void SetMana(float Mana);
+
+private:
+	FGameplayTag NoMovementTag;
 };

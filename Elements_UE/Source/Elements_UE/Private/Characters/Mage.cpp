@@ -162,7 +162,7 @@ void AMage::FinishDying()
 
 void AMage::Move(const FInputActionValue& Value)
 {
-	if (!IsAlive()) 
+	if (!IsAlive() || !CanMove()) 
 	{
 		return;
 	}
