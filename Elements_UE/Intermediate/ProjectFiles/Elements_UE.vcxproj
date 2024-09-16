@@ -278,10 +278,22 @@
     <ClCompile Include="..\..\Source\Elements_UE\Private\ElementSubsystem.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Elements_UE\Private\Abilities\DamageEffectCalculation.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Elements_UE\Private\Abilities\DamageExecCalculation.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Elements_UE\Private\Abilities\ElementsAbilitySystemComponent.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Elements_UE\Private\Abilities\ElementsAbilitySystemGlobals.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Elements_UE\Private\Abilities\ElementsGameplayAbility.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Elements_UE\Private\Abilities\ElementsGameplayAbility_Jump.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Elements_UE\Private\Abilities\AttributeSets\AttributeSetBase.cpp">
@@ -328,8 +340,12 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\Elements_UE\Public\ElementsGameMode.h"/>
     <ClInclude Include="..\..\Source\Elements_UE\Public\ElementSubsystem.h"/>
+    <ClInclude Include="..\..\Source\Elements_UE\Public\Abilities\DamageEffectCalculation.h"/>
+    <ClInclude Include="..\..\Source\Elements_UE\Public\Abilities\DamageExecCalculation.h"/>
     <ClInclude Include="..\..\Source\Elements_UE\Public\Abilities\ElementsAbilitySystemComponent.h"/>
+    <ClInclude Include="..\..\Source\Elements_UE\Public\Abilities\ElementsAbilitySystemGlobals.h"/>
     <ClInclude Include="..\..\Source\Elements_UE\Public\Abilities\ElementsGameplayAbility.h"/>
+    <ClInclude Include="..\..\Source\Elements_UE\Public\Abilities\ElementsGameplayAbility_Jump.h"/>
     <ClInclude Include="..\..\Source\Elements_UE\Public\Abilities\AttributeSets\AttributeSetBase.h"/>
     <ClInclude Include="..\..\Source\Elements_UE\Public\Abilities\AttributeSets\CharacterAttributeSet.h"/>
     <ClInclude Include="..\..\Source\Elements_UE\Public\AI\AICharacterBase.h"/>

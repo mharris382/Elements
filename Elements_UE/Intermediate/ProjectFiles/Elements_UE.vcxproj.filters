@@ -69,10 +69,22 @@
     <Filter Include="Source\Elements_UE\Private\Abilities">
       <UniqueIdentifier>{642A79F1-303C-3215-AD75-18B88474C6A5}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\Elements_UE\Private\Abilities\DamageEffectCalculation.cpp">
+      <Filter>Source\Elements_UE\Private\Abilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Elements_UE\Private\Abilities\DamageExecCalculation.cpp">
+      <Filter>Source\Elements_UE\Private\Abilities</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Elements_UE\Private\Abilities\ElementsAbilitySystemComponent.cpp">
       <Filter>Source\Elements_UE\Private\Abilities</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Elements_UE\Private\Abilities\ElementsAbilitySystemGlobals.cpp">
+      <Filter>Source\Elements_UE\Private\Abilities</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Elements_UE\Private\Abilities\ElementsGameplayAbility.cpp">
+      <Filter>Source\Elements_UE\Private\Abilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Elements_UE\Private\Abilities\ElementsGameplayAbility_Jump.cpp">
       <Filter>Source\Elements_UE\Private\Abilities</Filter>
     </ClCompile>
     <Filter Include="Source\Elements_UE\Private\Abilities\AttributeSets">
@@ -150,10 +162,22 @@
     <Filter Include="Source\Elements_UE\Public\Abilities">
       <UniqueIdentifier>{8EABEF31-C402-3708-A7E1-92B445165B6D}</UniqueIdentifier>
     </Filter>
+    <ClInclude Include="..\..\Source\Elements_UE\Public\Abilities\DamageEffectCalculation.h">
+      <Filter>Source\Elements_UE\Public\Abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Elements_UE\Public\Abilities\DamageExecCalculation.h">
+      <Filter>Source\Elements_UE\Public\Abilities</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Elements_UE\Public\Abilities\ElementsAbilitySystemComponent.h">
       <Filter>Source\Elements_UE\Public\Abilities</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Elements_UE\Public\Abilities\ElementsAbilitySystemGlobals.h">
+      <Filter>Source\Elements_UE\Public\Abilities</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Elements_UE\Public\Abilities\ElementsGameplayAbility.h">
+      <Filter>Source\Elements_UE\Public\Abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Elements_UE\Public\Abilities\ElementsGameplayAbility_Jump.h">
       <Filter>Source\Elements_UE\Public\Abilities</Filter>
     </ClInclude>
     <Filter Include="Source\Elements_UE\Public\Abilities\AttributeSets">
