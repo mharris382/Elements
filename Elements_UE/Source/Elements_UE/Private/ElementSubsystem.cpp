@@ -59,7 +59,10 @@ TEnumAsByte<EElementRelationship> UElementSubsystem::GetElementRelationship(FGam
 {
 	FGameplayTagContainer StrongAgainst = ElementStrongAgainst[Attacker];
 	FGameplayTagContainer WeakAgainst = ElementStrongAgainst[Defender];
-
+	if (!Attacker.IsValid() || !Defender.IsValid())
+	{
+		return EElementRelationship::Neutral;
+	}
 	if (Attacker.MatchesTag(Defender))
 	{
 		return EElementRelationship::Weak;
@@ -77,6 +80,18 @@ TEnumAsByte<EElementRelationship> UElementSubsystem::GetElementRelationship(FGam
 	{
 		return EElementRelationship::Neutral;
 	}
+}
+
+FGameplayTag UElementSubsystem::GetElementTag(FGameplayTagContainer TagContainer)
+{
+	for (FGameplayTag Tag : TagContainer)
+	{
+		if (Tag.MatchesTag(ElementTagBase))
+		{
+			return Tag;
+		}
+	}
+	return FGameplayTag();
 }
 
 void UElementSubsystem::SpawnManaPickup(FVector Location, FGameplayTag ElementTag, float ManaAmount, AActor* Source)

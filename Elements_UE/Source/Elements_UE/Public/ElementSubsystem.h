@@ -6,6 +6,7 @@
 #include "Engine/DataTable.h"
 #include "GameplayTagContainer.h"
 #include "Subsystems/GameInstanceSubsystem.h"
+
 #include "ElementSubsystem.generated.h"
 
 
@@ -57,7 +58,8 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Element")
     TEnumAsByte<EElementRelationship> GetElementRelationship(FGameplayTag Attacker, FGameplayTag Defender);
 
-
+    UFUNCTION(BlueprintCallable, Category = "Element")
+    FGameplayTag GetElementTag(FGameplayTagContainer TagContainer);
 
     UFUNCTION(BlueprintCallable, Category = "Element")
     void SpawnManaPickup(FVector Location, FGameplayTag ElementTag, float ManaAmount, AActor* Source);

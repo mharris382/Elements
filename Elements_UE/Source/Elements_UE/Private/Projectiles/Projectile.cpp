@@ -2,6 +2,7 @@
 
 
 #include "Projectiles/Projectile.h"
+#include "GameFramework/ProjectileMovementComponent.h"
 
 // Sets default values
 AProjectile::AProjectile()
@@ -11,7 +12,7 @@ AProjectile::AProjectile()
 
 	bReplicates = true;
 
-	//ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(FName("ProjectileMovement"));
+	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(FName("ProjectileMovement"));
 }
 
 // Called when the game starts or when spawned

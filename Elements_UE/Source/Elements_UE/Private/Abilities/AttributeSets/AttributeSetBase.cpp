@@ -116,3 +116,8 @@ void UAttributeSetBase::OnRep_ManaRegenRate(const FGameplayAttributeData& OldMan
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UAttributeSetBase, ManaRegenRate, OldManaRegenRate);
 }
+
+void UAttributeSetBase::OnRep_Armor(const FGameplayAttributeData& OldArmor)
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAttributeSetBase, Armor, OldArmor);
+}

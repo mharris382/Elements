@@ -25,6 +25,8 @@ public:
 
 	//UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 	//class UProjectileMovementComponent* ProjectileMovement;
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
+	class UProjectileMovementComponent* ProjectileMovement;
 
 protected:
 	// Called when the game starts or when spawned
