@@ -10,6 +10,17 @@ UCharacterAttributeSet::UCharacterAttributeSet()
 {
 }
 
+void UCharacterAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
+{
+	Super::PreAttributeChange(Attribute, NewValue);
+
+	if (Attribute == GetMoveSpeedAttribute())
+	{
+		// Cannot slow less than 150 units/s and cannot boost more than 1000 units/s
+		NewValue = FMath::Clamp<float>(NewValue, 150, 1000);
+	}
+}
+
 void UCharacterAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);

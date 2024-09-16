@@ -22,7 +22,7 @@ class ELEMENTS_UE_API ACharacterBase : public ACharacter, public IAbilitySystemI
 
 public:
 	// Sets default values for this character's properties
-	ACharacterBase();
+	ACharacterBase(const class FObjectInitializer& ObjectInitializer);
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Elements|Character")
 	FGameplayTag CharacterElementTag;
@@ -49,7 +49,12 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	/** Property replication */
 
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+
+
+	void OnRep_CharacterElementTag();
 
 	virtual void Die();
 
@@ -76,6 +81,14 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Elements|Character")
 	bool CanMove();
+
+	// Gets the Current value of MoveSpeed
+	UFUNCTION(BlueprintCallable, Category = "Elements|Character|Attributes")
+	float GetMoveSpeed() const;
+
+	// Gets the Base value of MoveSpeed
+	UFUNCTION(BlueprintCallable, Category = "Elements|Character|Attributes")
+	float GetMoveSpeedBaseValue() const;
 
 protected:
 
@@ -121,6 +134,9 @@ protected:
 	//bool CanSetCharacterElement(FGameplayTag ElementTag);
 	//
 	//bool CanSetCharacterElement_Implementation(FGameplayTag ElementTag);
+
+	void CharacterElementChanged(FGameplayTag OldElementTag, FGameplayTag NewElementTag);
+
 
 	UFUNCTION(BlueprintNativeEvent)
 	void UpdateCharacterElementVisuals(FGameplayTag NewElement, FElementData ElementData);

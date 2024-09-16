@@ -9,7 +9,7 @@ void UElementSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	FString DataTablePath = TEXT("/Game/Data/DT_ElementData");
 	ElementDataTable = Cast<UDataTable>(StaticLoadObject(UDataTable::StaticClass(), nullptr, *DataTablePath));
 
-	ManaPickupClass = StaticLoadClass(UObject::StaticClass(), nullptr, TEXT("/Game/Elements/Blueprints/BP_ManaPickup.BP_ManaPickup"));
+	ManaPickupClass = StaticLoadClass(UObject::StaticClass(), nullptr, TEXT("/Game/Elements/Blueprints/BP_ManaPickup"));
 	if (!ManaPickupClass)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Mana Pickup Class Not Found"));

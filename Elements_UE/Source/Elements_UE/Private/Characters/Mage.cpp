@@ -19,7 +19,7 @@
 
 
 
-AMage::AMage()
+AMage::AMage(const class FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
 
 
@@ -114,6 +114,10 @@ void AMage::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
 	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("AMage::SetupPlayerInputComponent: PlayerController is not valid"));
+	}
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent)) 
 	{
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AMage::Move);
@@ -141,7 +145,7 @@ void AMage::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	}
 	else
 	{
-			UE_LOG(LogTemp, Error, TEXT("AMage::SetupPlayerInputComponent: PlayerInputComponent is not EnhancedInputComponent"));
+		UE_LOG(LogTemp, Error, TEXT("AMage::SetupPlayerInputComponent: PlayerInputComponent is not EnhancedInputComponent"));
 	}
 	
 }

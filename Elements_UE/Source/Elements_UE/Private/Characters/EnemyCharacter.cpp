@@ -7,7 +7,7 @@
 #include "Components/WidgetComponent.h"
 #include "Kismet/GameplayStatics.h"
 
-AEnemyCharacter::AEnemyCharacter(const FObjectInitializer& ObjectInitializer)
+AEnemyCharacter::AEnemyCharacter(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
 	HardRefAbilitySystemComponent = CreateDefaultSubobject<UElementsAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
 	HardRefAbilitySystemComponent->SetIsReplicated(true);

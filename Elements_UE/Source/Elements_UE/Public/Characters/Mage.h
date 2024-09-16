@@ -89,7 +89,7 @@ class ELEMENTS_UE_API AMage : public ACharacterBase
 	virtual void FinishDying() override;
 
 public:
-	AMage();
+	AMage(const class FObjectInitializer& ObjectInitializer);
 
 	// Array of input-action mappings to ability tags
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Abilities")
