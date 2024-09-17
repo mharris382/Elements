@@ -158,7 +158,7 @@ void ACharacterBase::CharacterElementChanged(FGameplayTag OldElementTag, FGamepl
 	}
 }
 
-void ACharacterBase::OnRep_CharacterElementTag()
+void ACharacterBase::OnRep_CharacterElementTag(const FGameplayTag& OldCharacterElementTag)
 {
 	SetCharacterElement(CharacterElementTag);
 }
@@ -254,7 +254,8 @@ void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 void ACharacterBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-	DOREPLIFETIME(ACharacterBase, CharacterElementTag);
+	DOREPLIFETIME_CONDITION_NOTIFY(ACharacterBase, CharacterElementTag, COND_None, REPNOTIFY_Always);
+	//DOREPLIFETIME(ACharacterBase, CharacterElementTag);
 }
 
 

@@ -24,9 +24,23 @@ public:
 	// Sets default values for this character's properties
 	ACharacterBase(const class FObjectInitializer& ObjectInitializer);
 
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Elements|Character")
+
+
+
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Elements|Character", ReplicatedUsing = OnRep_CharacterElementTag)
 	FGameplayTag CharacterElementTag;
 
+	UFUNCTION()
+	void OnRep_CharacterElementTag(const FGameplayTag& OldCharacterElementTag);
+
+	UFUNCTION(BlueprintCallable, Category = "Elements|Character")
+
+
+
+
+
+	virtual FGameplayTag GetCharacterElement();
 
 	UPROPERTY(BlueprintAssignable, Category = "Elements|Character")
 	FCharacterDiedDelegate OnCharacterDied;
@@ -54,15 +68,17 @@ public:
 	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 
-	void OnRep_CharacterElementTag();
 
 	virtual void Die();
 
 	UFUNCTION(BlueprintCallable, Category = "Elements|Character")
 	virtual void FinishDying();
 
-	UFUNCTION(BlueprintCallable, Category = "Elements|Character")
-	virtual FGameplayTag GetCharacterElement();
+
+
+
+
+
 
 	UFUNCTION(BlueprintCallable, Category = "Elements|Character|Attributes")
 	float GetHealth() const;
