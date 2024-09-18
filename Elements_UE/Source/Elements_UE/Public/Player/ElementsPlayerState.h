@@ -45,6 +45,23 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Elements|ElementsPlayerState|Attributes")
 	float GetManaRegen() const;
 
+
+	UFUNCTION(BlueprintCallable, Category = "Elements|ElementsPlayerState|Attributes")
+	float GetArmor() const;
+
+	UFUNCTION(BlueprintCallable, Category = "Elements|ElementsPlayerState|Attributes")
+	float GetGold() const;
+
+
+	UFUNCTION(BlueprintCallable, Category = "Elements|ElementsPlayerState|Attributes")
+	float GetMoveSpeed() const;
+
+	UFUNCTION(BlueprintCallable, Category = "Elements|ElementsPlayerState|Attributes")
+	float GetCharacterLevel() const;
+
+	UFUNCTION(BlueprintCallable, Category = "Elements|ElementsPlayerState|Attributes")
+	float GetXP() const;
+
 protected:
 
 	UPROPERTY()

@@ -75,6 +75,31 @@ float AElementsPlayerState::GetManaRegen() const
 	return AttributeSet->GetManaRegenRate();
 }
 
+float AElementsPlayerState::GetArmor() const
+{
+	return AttributeSet->GetArmor();
+}
+
+float AElementsPlayerState::GetGold() const
+{
+	return AttributeSet->GetGold();
+}
+
+float AElementsPlayerState::GetMoveSpeed() const
+{
+	return AttributeSet->GetMoveSpeed();
+}
+
+float AElementsPlayerState::GetCharacterLevel() const
+{
+	return AttributeSet->GetCharacterLevel();
+}
+
+float AElementsPlayerState::GetXP() const
+{
+	return AttributeSet->GetXP();
+}
+
 void AElementsPlayerState::BeginPlay()
 {
 	Super::BeginPlay();

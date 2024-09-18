@@ -64,6 +64,11 @@ public:
 	FGameplayAttributeData Armor;
 	ATTRIBUTE_ACCESSORS(UAttributeSetBase, Armor)
 
+
+	UPROPERTY(BlueprintReadOnly, Category = "Gold", ReplicatedUsing = OnRep_Gold)
+	FGameplayAttributeData Gold;
+	ATTRIBUTE_ACCESSORS(UAttributeSetBase, Gold)
+
 protected:
 	// Helper function to proportionally adjust the value of an attribute when it's associated max attribute changes.
 	// (i.e. When MaxHealth increases, Health increases by an amount that maintains the same percentage as before)
@@ -89,6 +94,9 @@ protected:
 
 	UFUNCTION()
 	virtual void OnRep_Armor(const FGameplayAttributeData& OldArmor);
+
+	UFUNCTION()
+	virtual void OnRep_Gold(const FGameplayAttributeData& OldGold);
 
 private:
 	FGameplayTag HitDirectionFrontTag;

@@ -10,20 +10,28 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/Controller.h"
 #include "EnhancedInputComponent.h"
+#include "Net/UnrealNetwork.h"
 #include "EnhancedInputSubsystems.h"
 #include "Abilities/ElementsAbilitySystemComponent.h"
 #include "Abilities/AttributeSets/AttributeSetBase.h"
 #include "Abilities/AttributeSets/CharacterAttributeSet.h"
+#include "Characters/ElementalMovementComponent.h"
 #include "InputActionValue.h"
 
 // Sets default values
-ACharacterBase::ACharacterBase()
+ACharacterBase::ACharacterBase(const class FObjectInitializer& ObjectInitializer) :
+	Super(ObjectInitializer.SetDefaultSubobjectClass < UElementalMovementComponent > (ACharacter::CharacterMovementComponentName))
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
+
+	GetCapsuleComponent()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Visibility, ECollisionResponse::ECR_Overlap);
+
+	bAlwaysRelevant = true;
+
 
 	// Don't rotate when the controller rotates. Let that just affect the camera.
 	bUseControllerRotationPitch = false;
@@ -52,6 +60,11 @@ ACharacterBase::ACharacterBase()
 	DeadTag = FGameplayTag::RequestGameplayTag(FName("State.Dead"));
 	EffectRemoveOnDeathTag = FGameplayTag::RequestGameplayTag(FName("Effect.RemoveOnDeath"));
 	NoMovementTag = FGameplayTag::RequestGameplayTag(FName("State.NoMovement"));
+}
+
+FGameplayTag ACharacterBase::GetElementTag()
+{
+	return GetCharacterElement();
 }
 
 UAbilitySystemComponent* ACharacterBase::GetAbilitySystemComponent() const
@@ -103,36 +116,56 @@ void ACharacterBase::BeginPlay()
 	
 }
 
-void ACharacterBase::SetCharacterElement(FGameplayTag ElementTag)
+void ACharacterBase::SetCharacterElement(FGameplayTag InElementTag)
 {
-	if (GetLocalRole() < ROLE_Authority)
+	if (IsLocallyControlled())
+	{
+		FGameplayTag OldElementTag = CharacterElementTag;
+		CharacterElementTag = InElementTag;
+		CharacterElementChanged(OldElementTag, InElementTag);
+	}
+	if (GetLocalRole() == ROLE_Authority)
 	{
 		//TODO: ServerSetCharacterElement(ElementTag);
-		
-	}
-	else
-	{
 		UWorld* World = GetWorld();
 		if (World) {
 			UGameInstance* GameInstance = World->GetGameInstance();
 			if (GameInstance)
 			{
 				UElementSubsystem* ElementSubsystem = GameInstance->GetSubsystem<UElementSubsystem>();
-				if (ElementSubsystem && ElementSubsystem->IsValidElement(ElementTag))
+				if (ElementSubsystem && ElementSubsystem->IsValidElement(InElementTag))
 				{
-					CharacterElementTag = ElementTag;
+					FGameplayTag OldElementTag = CharacterElementTag;
+					CharacterElementTag = InElementTag;
 					FElementData ElementData;
-					if (ElementSubsystem->GetElementDataFromTag(ElementTag, ElementData))
-					{
-						UpdateCharacterElementVisuals(ElementTag, ElementData);
-					}
-					else {
-						UE_LOG(LogTemp, Warning, TEXT("ACharacterBase::SetCharacterElement: ElementData not found for %s"), *ElementTag.ToString());
-					}
+					CharacterElementChanged(OldElementTag, InElementTag);
 				}
 			}
 		}
 	}
+}
+
+void ACharacterBase::CharacterElementChanged(FGameplayTag OldElementTag, FGameplayTag NewElementTag)
+{
+	UWorld* World = GetWorld();
+	if (World) 
+	{
+		UGameInstance* GameInstance = World->GetGameInstance();
+		if (GameInstance)
+		{
+			UElementSubsystem* ElementSubsystem = GameInstance->GetSubsystem<UElementSubsystem>();
+			FElementData ElementData;
+			if (ElementSubsystem && ElementSubsystem->GetElementDataFromTag(NewElementTag, ElementData))
+			{
+				UpdateCharacterElementVisuals(NewElementTag, ElementData);
+			}
+		}
+	}
+}
+
+void ACharacterBase::OnRep_CharacterElementTag(const FGameplayTag& OldCharacterElementTag)
+{
+	SetCharacterElement(CharacterElementTag);
 }
 
 void ACharacterBase::UpdateCharacterElementVisuals_Implementation(FGameplayTag NewElement, FElementData ElementData)
@@ -209,6 +242,16 @@ void ACharacterBase::AddStartupEffects()
 	}
 }
 
+void ACharacterBase::AttackActionStarted()
+{
+	OnAttackActionStarted.Broadcast();
+}
+
+void ACharacterBase::AttackActionCompleted(bool WasSuccessful)
+{
+	OnAttackActionCompleted.Broadcast(WasSuccessful);
+}
+
 // Called every frame
 void ACharacterBase::Tick(float DeltaTime)
 {
@@ -222,6 +265,15 @@ void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 }
+
+void ACharacterBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME_CONDITION_NOTIFY(ACharacterBase, CharacterElementTag, COND_None, REPNOTIFY_Always);
+	//DOREPLIFETIME(ACharacterBase, CharacterElementTag);
+}
+
+
 
 void ACharacterBase::Die()
 {
@@ -299,7 +351,38 @@ float ACharacterBase::GetMaxMana() const
 
 float ACharacterBase::GetCharacterLevel() const
 {
-	return 1.0f;
+	if (AttributeSetBase.IsValid())
+	{
+		return AttributeSetBase->GetCharacterLevel();
+	}
+	return 1;
+}
+
+float ACharacterBase::GetArmor() const
+{
+	if (AttributeSetBase.IsValid())
+	{
+		return AttributeSetBase->GetArmor();
+	}
+	return 0.0f;
+}
+
+float ACharacterBase::GetGold() const
+{
+	if (AttributeSetBase.IsValid())
+	{
+		return AttributeSetBase->GetGold();
+	}
+	return 0.0f;
+}
+
+float ACharacterBase::GetMoveSpeed() const
+{
+	if (AttributeSetBase.IsValid())
+	{
+		return AttributeSetBase->GetMoveSpeed();
+	}
+	return 0.0f;
 }
 
 bool ACharacterBase::CanMove()
@@ -310,6 +393,16 @@ bool ACharacterBase::CanMove()
 	}
 	UE_LOG(LogTemp, Error, TEXT("ACharacterBase::CanMove: AbilitySystemComponent not valid"));
 	return true;
+}
+
+
+float ACharacterBase::GetMoveSpeedBaseValue() const
+{
+	if (AttributeSetBase.IsValid())
+	{
+		return AttributeSetBase->GetMoveSpeedAttribute().GetGameplayAttributeData(AttributeSetBase.Get())->GetBaseValue();
+	}
+	return 0.0f;
 }
 
 

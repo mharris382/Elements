@@ -56,10 +56,7 @@ void AElementsGameMode::RespawnHero(AController* Controller)
 		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("GameMode: Respawning Hero Now"));
 	}
 	if (!Controller) {
-		if (GEngine)
-		{
-			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("GameMode: Cannot Respawn Hero, Controller is null"));
-		}
+		UE_LOG(LogTemp, Error, TEXT("GameMode RespawnHero: Failed to Respawn Hero because Controller is null"))
 		return;
 	}
 	if (Controller->IsPlayerController())
@@ -79,10 +76,6 @@ void AElementsGameMode::RespawnHero(AController* Controller)
 		Controller->Possess(Mage);
 	}
 	else {
-		if (GEngine)
-		{
-			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("GameMode: Failed to Respawn Hero because Controller is not a player"));
-		}
+		UE_LOG(LogTemp, Error, TEXT("GameMode RespawnHero: Failed to Respawn Hero because Controller is not a PlayerController. Controller Type: %s"), *Controller->GetClass()->GetName());
 	}
-
 }

@@ -25,6 +25,7 @@ class ELEMENTS_UE_API UCharacterAttributeSet : public UAttributeSetBase
 public:
 	UCharacterAttributeSet();
 
+	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
 
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
