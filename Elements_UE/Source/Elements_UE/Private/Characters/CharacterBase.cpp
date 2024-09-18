@@ -62,6 +62,11 @@ ACharacterBase::ACharacterBase(const class FObjectInitializer& ObjectInitializer
 	NoMovementTag = FGameplayTag::RequestGameplayTag(FName("State.NoMovement"));
 }
 
+FGameplayTag ACharacterBase::GetElementTag()
+{
+	return GetCharacterElement();
+}
+
 UAbilitySystemComponent* ACharacterBase::GetAbilitySystemComponent() const
 {
 	return AbilitySystemComponent.Get();
@@ -336,7 +341,38 @@ float ACharacterBase::GetMaxMana() const
 
 float ACharacterBase::GetCharacterLevel() const
 {
-	return 1.0f;
+	if (AttributeSetBase.IsValid())
+	{
+		return AttributeSetBase->GetCharacterLevel();
+	}
+	return 1;
+}
+
+float ACharacterBase::GetArmor() const
+{
+	if (AttributeSetBase.IsValid())
+	{
+		return AttributeSetBase->GetArmor();
+	}
+	return 0.0f;
+}
+
+float ACharacterBase::GetGold() const
+{
+	if (AttributeSetBase.IsValid())
+	{
+		return AttributeSetBase->GetGold();
+	}
+	return 0.0f;
+}
+
+float ACharacterBase::GetMoveSpeed() const
+{
+	if (AttributeSetBase.IsValid())
+	{
+		return AttributeSetBase->GetMoveSpeed();
+	}
+	return 0.0f;
 }
 
 bool ACharacterBase::CanMove()
@@ -349,15 +385,6 @@ bool ACharacterBase::CanMove()
 	return true;
 }
 
-float ACharacterBase::GetMoveSpeed() const
-{
-	if(AttributeSetBase.IsValid())
-	{
-		return AttributeSetBase->GetMoveSpeed();
-	}
-
-	return 0.0f;
-}
 
 float ACharacterBase::GetMoveSpeedBaseValue() const
 {

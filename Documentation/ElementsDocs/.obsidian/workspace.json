@@ -30,9 +30,33 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "78b68d141288263b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Project Organization.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "d37c25b922feea79",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Task List.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -98,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Animation Notifies.md",
+                "file": "Task List.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Animation Notifies.md",
+                "file": "Task List.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Animation Notifies.md"
+                "file": "Task List.md"
               }
             }
           }
@@ -159,11 +183,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "507a2da8ba9fac66",
+  "active": "d37c25b922feea79",
   "lastOpenFiles": [
+    "Project Organization.md",
+    "Task List.md",
+    "Socket Names.md",
     "Animation Notifies.md",
     "attachments/Pasted image 20240916005920.png",
-    "Socket Names.md",
     "attachments/Pasted image 20240916005909.png",
     "attachments",
     "Pasted image 20240916005850.png",

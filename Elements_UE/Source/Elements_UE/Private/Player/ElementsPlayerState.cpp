@@ -75,6 +75,16 @@ float AElementsPlayerState::GetManaRegen() const
 	return AttributeSet->GetManaRegenRate();
 }
 
+float AElementsPlayerState::GetArmor() const
+{
+	return AttributeSet->GetArmor();
+}
+
+float AElementsPlayerState::GetGold() const
+{
+	return AttributeSet->GetGold();
+}
+
 float AElementsPlayerState::GetMoveSpeed() const
 {
 	return AttributeSet->GetMoveSpeed();

@@ -72,7 +72,8 @@ void UAttributeSetBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 	DOREPLIFETIME_CONDITION_NOTIFY(UAttributeSetBase, MaxMana, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UAttributeSetBase, ManaRegenRate, COND_None, REPNOTIFY_Always);
 
-	DOREPLIFETIME_CONDITION_NOTIFY(UCharacterAttributeSet, Armor, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAttributeSetBase, Armor, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAttributeSetBase, Gold, COND_None, REPNOTIFY_Always);
 }
 
 void UAttributeSetBase::AdjustAttributeForMaxChange(FGameplayAttributeData& AffectedAttribute, const FGameplayAttributeData& MaxAttribute, float NewMaxValue, const FGameplayAttribute& AffectedAttributeProperty)
@@ -122,4 +123,9 @@ void UAttributeSetBase::OnRep_ManaRegenRate(const FGameplayAttributeData& OldMan
 void UAttributeSetBase::OnRep_Armor(const FGameplayAttributeData& OldArmor)
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UAttributeSetBase, Armor, OldArmor);
+}
+
+void UAttributeSetBase::OnRep_Gold(const FGameplayAttributeData& OldGold)
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAttributeSetBase, Gold, OldGold);
 }
