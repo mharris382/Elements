@@ -242,6 +242,16 @@ void ACharacterBase::AddStartupEffects()
 	}
 }
 
+void ACharacterBase::AttackActionStarted()
+{
+	OnAttackActionStarted.Broadcast();
+}
+
+void ACharacterBase::AttackActionCompleted(bool WasSuccessful)
+{
+	OnAttackActionCompleted.Broadcast(WasSuccessful);
+}
+
 // Called every frame
 void ACharacterBase::Tick(float DeltaTime)
 {

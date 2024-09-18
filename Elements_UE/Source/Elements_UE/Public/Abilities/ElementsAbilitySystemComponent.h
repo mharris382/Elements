@@ -20,6 +20,7 @@ public:
 	bool bCharacterAbilitiesGiven = false;
 	bool bStartupEffectsApplied = false;
 
+	UPROPERTY(BlueprintAssignable, Category = "Elements|Damage")
 	FReceivedDamageDelegate OnReceivedDamage;
 
 	// Called from ElementDamageExecCalculation. Broadcasts on ReceivedDamage whenever this ASC receives damage.

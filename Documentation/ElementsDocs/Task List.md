@@ -1,6 +1,11 @@
-- [ ] Make A Projectile Attack ability base class (in C++)
-- [ ] Make A First Projectile Attack in blueprints
-- [ ] Make Player Quick Cast use projectile attack ability
+- [x] Create BlueprintFunctionLibrary for accessing elements through tags and actors
+- [x] Add element interface so that anything can define its element
+
+- [x] Added two events in Character base for attack begin and attack end (for communication between animations and abilities)
+
+- [x] Make A Projectile Attack ability base class (in C++)
+- [x] Make A First Projectile Attack in blueprints
+- [x] Make Player Quick Cast use projectile attack ability
 - [ ] Ensure this attack kills the dummy
 
 
@@ -14,3 +19,9 @@
 
 
 - [ ] Create a larger testing arena containing 4 combat zones for testing 
+
+
+
+
+- [ ] PCG_CreateVillageWall
+- [ ] PCG_AddDoorToVillageWall

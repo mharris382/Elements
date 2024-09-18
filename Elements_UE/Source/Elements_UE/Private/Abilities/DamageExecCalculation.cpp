@@ -35,6 +35,7 @@ static const ElementsDamageStatics& DamageStatics()
 UDamageExecCalculation::UDamageExecCalculation()
 {
 	RelevantAttributesToCapture.Add(DamageStatics().DamageDef);
+	RelevantAttributesToCapture.Add(DamageStatics().ArmorDef);
 }
 
 void UDamageExecCalculation::Execute_Implementation(const FGameplayEffectCustomExecutionParameters& ExecutionParams, OUT FGameplayEffectCustomExecutionOutput& OutExecutionOutput) const
@@ -48,6 +49,7 @@ void UDamageExecCalculation::Execute_Implementation(const FGameplayEffectCustomE
 
 	if (!TargetASC)
 	{
+		UE_LOG(LogTemp, Warning, TEXT("UDamageExecCalculation::Execute_Implementation: TargetASC is null"));
 		return;
 	}
 
@@ -128,9 +130,13 @@ void UDamageExecCalculation::Execute_Implementation(const FGameplayEffectCustomE
 	UElementsAbilitySystemComponent* TargetElementsASC = Cast<UElementsAbilitySystemComponent>(TargetASC);
 	if (TargetASC)
 	{
+		UE_LOG(LogTemp, Log, TEXT("UDamageExecCalculation::Execute_Implementation: Receiving Damage"));
 		UElementsAbilitySystemComponent* SourceElementsASC = Cast<UElementsAbilitySystemComponent>(SourceASC);
 		
 		TargetElementsASC->ReceiveDamage(SourceElementsASC, UnmitigatedDamage, MitigatedDamage, Relationship);
+	}
+	else {
+		UE_LOG(LogTemp, Warning, TEXT("UDamageExecCalculation::Execute_Implementation: TargetElementsASC is null"));
 	}
 	//// Set the Target's Health attribute to be the current value minus the damage
 	//float NewHealth = 0.f;

@@ -16,6 +16,8 @@
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCharacterDiedDelegate, ACharacterBase*, Character);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCharacterBaseHitReactDelegate, EHitReactDirection, Direction);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FElementChangedDelegate, FGameplayTag, ElementTag);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FAttackActionStartedDelegate);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FAttackActionCompleted, bool, bActionSuccess);
 
 UCLASS()
 class ELEMENTS_UE_API ACharacterBase : public ACharacter, public IAbilitySystemInterface, public IElementInterface
@@ -60,6 +62,23 @@ public:
 
 
 
+	
+
+	UPROPERTY(BlueprintAssignable, Category = "Elements|Character")
+	FAttackActionCompleted OnAttackActionCompleted;
+
+
+	UPROPERTY(BlueprintAssignable, Category = "Elements|Character")
+	FAttackActionStartedDelegate OnAttackActionStarted;
+
+	///used by anim notify to tell ability system to begin the attack action (this could be used for spawning projectile, or activating a melee attack hitbox)
+	UFUNCTION(BlueprintCallable, Category = "Elements|Character")
+	void AttackActionStarted();
+
+
+	///used by anim notify to tell ability system to complete the attack action
+	UFUNCTION(BlueprintCallable, Category = "Elements|Character")
+	void AttackActionCompleted(bool WasSuccessful);
 
 
 	//--------------------------------------------------------------------------------------------
@@ -140,6 +159,8 @@ public:
 
 #pragma endregion
 
+
+	
 
 protected:
 
