@@ -22,5 +22,5 @@ public:
 
 
 private:
-	float GetMultiplierForRelationship(EElementRelationship Relationship);
+	float GetMultiplierForRelationship(EElementRelationship Relationship) const;
 };

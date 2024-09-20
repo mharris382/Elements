@@ -49,15 +49,8 @@ void AEnemyCharacter::BeginPlay()
 	{
 		AbilitySystemComponent->InitAbilityActorInfo(this, this);
 		InitializeAttributes();
-		if (AttributeSetBase->GetMaxHealth() == 0 && GEngine)
-		{
-			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("Initialized Attributes but Max Health is still ZERO!!! :( "));
-		}
 		AddStartupEffects();
 		AddCharacterAbilities();
-		if (GEngine) {
-			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("Initialized Enemy Abilities"));
-		}
 		UE_LOG(LogTemp, Error, TEXT("Initialized Enemy Abilities"));
 
 

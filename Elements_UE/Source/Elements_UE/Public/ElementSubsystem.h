@@ -71,6 +71,7 @@ public:
     bool IsValidElement(FGameplayTag ElementTag);
 
 private:
+    bool bInitialized = false;
     // Store the loaded element data
     UPROPERTY()
     TObjectPtr<UDataTable> ElementDataTable;

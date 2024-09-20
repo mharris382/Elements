@@ -7,6 +7,7 @@
 #include "Characters/CharacterBase.h"
 #include "ElementsGameMode.generated.h"
 
+class ACharacterBase;
 /**
  * 
  */
@@ -19,11 +20,16 @@ public:
 
 	void HeroDied(AController* Character);
 
+	void DropManaFromCharacterDeath(ACharacterBase* Character);
+
 protected:
 	float RespawnDelay;
 
 	TSubclassOf<ACharacterBase> PlayerPawnClass;
+	TSubclassOf<class AManaPickup> ManaPickupClass;
 
 
 	void RespawnHero(AController* Controller);
+
+	void SpawnManaPickup(ACharacterBase* Instigator, FVector Location, float ManaAmount);
 };

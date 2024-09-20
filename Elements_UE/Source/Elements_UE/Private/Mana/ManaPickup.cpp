@@ -62,6 +62,7 @@ void AManaPickup::SetElementType(FGameplayTag NewElementTag)
 {
 	FElementData ElementData;
 	UElementSubsystem* ElementSubsystem = GetGameInstance()->GetSubsystem<UElementSubsystem>();
+	ElementTag = NewElementTag;
 	if (ElementSubsystem)
 	{
 		// Now you can use ElementSubsystem

@@ -7,6 +7,7 @@
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Abilities/ElementsAbilitySystemComponent.h"
+#include "ElementsGameMode.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/Controller.h"
 #include "EnhancedInputComponent.h"
@@ -124,29 +125,35 @@ void ACharacterBase::SetCharacterElement(FGameplayTag InElementTag)
 		CharacterElementTag = InElementTag;
 		CharacterElementChanged(OldElementTag, InElementTag);
 	}
-	if (GetLocalRole() == ROLE_Authority)
-	{
-		//TODO: ServerSetCharacterElement(ElementTag);
-		UWorld* World = GetWorld();
-		if (World) {
-			UGameInstance* GameInstance = World->GetGameInstance();
-			if (GameInstance)
+	
+	//TODO: ServerSetCharacterElement(ElementTag);
+	UWorld* World = GetWorld();
+	if (World) {
+		UGameInstance* GameInstance = World->GetGameInstance();
+		if (GameInstance)
+		{
+			UElementSubsystem* ElementSubsystem = GameInstance->GetSubsystem<UElementSubsystem>();
+			if (ElementSubsystem && ElementSubsystem->IsValidElement(InElementTag))
 			{
-				UElementSubsystem* ElementSubsystem = GameInstance->GetSubsystem<UElementSubsystem>();
-				if (ElementSubsystem && ElementSubsystem->IsValidElement(InElementTag))
-				{
-					FGameplayTag OldElementTag = CharacterElementTag;
-					CharacterElementTag = InElementTag;
-					FElementData ElementData;
-					CharacterElementChanged(OldElementTag, InElementTag);
-				}
+				FGameplayTag OldElementTag = CharacterElementTag;
+				CharacterElementTag = InElementTag;
+				FElementData ElementData;
+				CharacterElementChanged(OldElementTag, InElementTag);
 			}
 		}
+		else {
+			UE_LOG(LogTemp, Error, TEXT("ACharacterBase::SetCharacterElement: GameInstance not valid"));
+		}
 	}
+	else {
+		UE_LOG(LogTemp, Error, TEXT("ACharacterBase::SetCharacterElement: World not valid"));
+	}
+	
 }
 
 void ACharacterBase::CharacterElementChanged(FGameplayTag OldElementTag, FGameplayTag NewElementTag)
 {
+
 	UWorld* World = GetWorld();
 	if (World) 
 	{
@@ -157,6 +164,11 @@ void ACharacterBase::CharacterElementChanged(FGameplayTag OldElementTag, FGamepl
 			FElementData ElementData;
 			if (ElementSubsystem && ElementSubsystem->GetElementDataFromTag(NewElementTag, ElementData))
 			{
+				if (AbilitySystemComponent.IsValid() && GetLocalRole() == ROLE_Authority)
+				{
+					AbilitySystemComponent->SetTagMapCount(OldElementTag, 0);
+					AbilitySystemComponent->SetTagMapCount(NewElementTag, 1);
+				}
 				UpdateCharacterElementVisuals(NewElementTag, ElementData);
 			}
 		}
@@ -278,10 +290,21 @@ void ACharacterBase::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLi
 void ACharacterBase::Die()
 {
 	RemoveCharacterAbilities();
-	if (GEngine) {
+	/*if (GEngine) {
 		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("Character Died!!!"));
-	}
+	}*/
+	
 	OnCharacterDied.Broadcast(this);
+
+	UWorld* world = GetWorld();
+	if (HasAuthority() && world) {
+		AElementsGameMode* GameMode = Cast<AElementsGameMode>(world->GetAuthGameMode());
+		if (GameMode)
+		{
+			GameMode->DropManaFromCharacterDeath(this);
+		}
+	}
+
 	if (AbilitySystemComponent.IsValid())
 	{
 		AbilitySystemComponent->CancelAllAbilities();

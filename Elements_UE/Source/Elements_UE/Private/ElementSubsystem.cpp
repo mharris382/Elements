@@ -53,10 +53,25 @@ void UElementSubsystem::InitializeElementRelationships()
 
 	// Log for debugging
 	UE_LOG(LogTemp, Log, TEXT("Element relationships initialized"));
+	bInitialized = true;
 }
 
 TEnumAsByte<EElementRelationship> UElementSubsystem::GetElementRelationship(FGameplayTag Attacker, FGameplayTag Defender)
 {
+	if (!bInitialized)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Element Relationships Not Initialized"));
+		return EElementRelationship::Neutral;
+	}
+	if (!ElementStrongAgainst.Contains(Attacker)) {
+		UE_LOG(LogTemp, Error, TEXT("Element %s Not Found"), *Attacker.ToString());
+		return EElementRelationship::Neutral;
+	}
+	if(!ElementStrongAgainst.Contains(Defender))
+	{
+		UE_LOG(LogTemp, Error, TEXT("Element %s Not Found"), *Defender.ToString());
+		return EElementRelationship::Neutral;
+	}
 	FGameplayTagContainer StrongAgainst = ElementStrongAgainst[Attacker];
 	FGameplayTagContainer WeakAgainst = ElementStrongAgainst[Defender];
 	if (!Attacker.IsValid() || !Defender.IsValid())
