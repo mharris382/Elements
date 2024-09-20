@@ -85,13 +85,13 @@
 		- [x] copy target
 	- [x] add outputs:
 		- [x] wall points
-- [ ] PCG_CreateVillageWall
-	- [ ] add parameters: cnt, size, local_space, seed, right corner only = true
-	- [ ] add inputs
-		- [ ] spawn grid
-		- [ ] flag r/l side spawns: add attribute **side** (1, 0, -1)
-		- [ ] get distance to center: copy to attribute **center distance**
-		- [ ] create corners
+- [x] PCG_CreateVillageWall
+	- [x] add parameters: cnt, size, local_space, seed, right corner only = true
+	- [x] add inputs
+		- [x] spawn grid
+		- [x] flag r/l side spawns: add attribute **side** (1, 0, -1)
+		- [x] get distance to center: copy to attribute **center distance**
+		- [x] create corners
 	- [ ] add outputs: walls, corners
 - [x] PCG_AddDoorToVillageWall
 	- [x] add parameters: seed, count, door_index

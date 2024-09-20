@@ -54,9 +54,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "a9b6ca1641d66d7a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Elements Project Reflection - 9-19-2024.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -122,7 +134,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Task List.md",
+                "file": "Elements Project Reflection - 9-19-2024.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +151,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Task List.md",
+                "file": "Elements Project Reflection - 9-19-2024.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +174,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Task List.md"
+                "file": "Elements Project Reflection - 9-19-2024.md"
               }
             }
           }
@@ -183,10 +195,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d37c25b922feea79",
+  "active": "a9b6ca1641d66d7a",
   "lastOpenFiles": [
-    "Project Organization.md",
     "Task List.md",
+    "Elements Project Reflection - 9-19-2024.md",
+    "Project Organization.md",
     "Socket Names.md",
     "Animation Notifies.md",
     "attachments/Pasted image 20240916005920.png",
