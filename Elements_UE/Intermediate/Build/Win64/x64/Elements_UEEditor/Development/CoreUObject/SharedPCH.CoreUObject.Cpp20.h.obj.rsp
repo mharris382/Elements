@@ -1,4 +1,4 @@
-"B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\Win64\x64\Elements_UEEditor\Development\CoreUObject\SharedPCH.CoreUObject.Cpp20.cpp"
+"C:\Users\Admin\Documents\UE_Projects\Elements\Elements_UE\Intermediate\Build\Win64\x64\Elements_UEEditor\Development\CoreUObject\SharedPCH.CoreUObject.Cpp20.cpp"
 /I "."
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\CoreUObject\UHT"
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\CoreUObject\VerseVMBytecode"
@@ -8,15 +8,15 @@
 /I "Runtime\Core\Internal"
 /I "Runtime\TraceLog\Public"
 /external:W0
-/external:I "B:\Applications\VS\VC\Tools\MSVC\14.36.32532\INCLUDE"
-/external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt"
-/external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\shared"
-/external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\um"
-/external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\winrt"
-/Yc"B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\Win64\x64\Elements_UEEditor\Development\CoreUObject\SharedPCH.CoreUObject.Cpp20.h"
-/Fp"B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\Win64\x64\Elements_UEEditor\Development\CoreUObject\SharedPCH.CoreUObject.Cpp20.h.pch"
-/Fo"B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\Win64\x64\Elements_UEEditor\Development\CoreUObject\SharedPCH.CoreUObject.Cpp20.h.obj"
-/sourceDependencies "B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\Win64\x64\Elements_UEEditor\Development\CoreUObject\SharedPCH.CoreUObject.Cpp20.h.dep.json"
+/external:I "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\INCLUDE"
+/external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"
+/external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"
+/external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"
+/external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"
+/Yc"C:\Users\Admin\Documents\UE_Projects\Elements\Elements_UE\Intermediate\Build\Win64\x64\Elements_UEEditor\Development\CoreUObject\SharedPCH.CoreUObject.Cpp20.h"
+/Fp"C:\Users\Admin\Documents\UE_Projects\Elements\Elements_UE\Intermediate\Build\Win64\x64\Elements_UEEditor\Development\CoreUObject\SharedPCH.CoreUObject.Cpp20.h.pch"
+/Fo"C:\Users\Admin\Documents\UE_Projects\Elements\Elements_UE\Intermediate\Build\Win64\x64\Elements_UEEditor\Development\CoreUObject\SharedPCH.CoreUObject.Cpp20.h.obj"
+/sourceDependencies "C:\Users\Admin\Documents\UE_Projects\Elements\Elements_UE\Intermediate\Build\Win64\x64\Elements_UEEditor\Development\CoreUObject\SharedPCH.CoreUObject.Cpp20.h.dep.json"
 /Zc:inline
 /nologo
 /Oi

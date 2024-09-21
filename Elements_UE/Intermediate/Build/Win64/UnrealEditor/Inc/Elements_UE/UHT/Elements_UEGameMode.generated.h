@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define ELEMENTS_UE_Elements_UEGameMode_generated_h
 
-#define FID_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h_12_INCLASS_NO_PURE_DECLS \
+#define FID_Users_Admin_Documents_UE_Projects_Elements_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h_12_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAElements_UEGameMode(); \
 	friend struct Z_Construct_UClass_AElements_UEGameMode_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(AElements_UEGameMode)
 
 
-#define FID_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h_12_ENHANCED_CONSTRUCTORS \
+#define FID_Users_Admin_Documents_UE_Projects_Elements_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h_12_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AElements_UEGameMode(AElements_UEGameMode&&); \
@@ -35,12 +35,12 @@ public: \
 	ELEMENTS_UE_API virtual ~AElements_UEGameMode();
 
 
-#define FID_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h_9_PROLOG
-#define FID_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h_12_GENERATED_BODY \
+#define FID_Users_Admin_Documents_UE_Projects_Elements_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h_9_PROLOG
+#define FID_Users_Admin_Documents_UE_Projects_Elements_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h_12_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h_12_INCLASS_NO_PURE_DECLS \
-	FID_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h_12_ENHANCED_CONSTRUCTORS \
+	FID_Users_Admin_Documents_UE_Projects_Elements_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h_12_INCLASS_NO_PURE_DECLS \
+	FID_Users_Admin_Documents_UE_Projects_Elements_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h_12_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -48,7 +48,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> ELEMENTS_UE_API UClass* StaticClass<class AElements_UEGameMode>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h
+#define CURRENT_FILE_ID FID_Users_Admin_Documents_UE_Projects_Elements_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

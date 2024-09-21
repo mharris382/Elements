@@ -6,9 +6,10 @@
 /NAME:"UnrealEditor-Elements_UE.dll"
 /IGNORE:4221
 /NODEFAULTLIB
-"B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\Win64\x64\Elements_UEEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.obj"
-"B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\Win64\x64\UnrealEditor\Development\Elements_UE\Module.Elements_UE.cpp.obj"
-"B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\Win64\x64\UnrealEditor\Development\Elements_UE\ElementsAbilitySystemGlobals.cpp.obj"
-"B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\Win64\x64\UnrealEditor\Development\Elements_UE\Elements_UE.init.gen.cpp.obj"
-"B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\Win64\x64\UnrealEditor\Development\Elements_UE\Default.rc2.res"
-/OUT:"B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\Win64\x64\UnrealEditor\Development\Elements_UE\UnrealEditor-Elements_UE.lib"
+"C:\Users\Admin\Documents\UE_Projects\Elements\Elements_UE\Intermediate\Build\Win64\x64\Elements_UEEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.obj"
+"C:\Users\Admin\Documents\UE_Projects\Elements\Elements_UE\Intermediate\Build\Win64\x64\UnrealEditor\Development\Elements_UE\Module.Elements_UE.cpp.obj"
+"C:\Users\Admin\Documents\UE_Projects\Elements\Elements_UE\Intermediate\Build\Win64\x64\UnrealEditor\Development\Elements_UE\Elements_UE.init.gen.cpp.obj"
+"C:\Users\Admin\Documents\UE_Projects\Elements\Elements_UE\Intermediate\Build\Win64\x64\UnrealEditor\Development\Elements_UE\Elements_UECharacter.gen.cpp.obj"
+"C:\Users\Admin\Documents\UE_Projects\Elements\Elements_UE\Intermediate\Build\Win64\x64\UnrealEditor\Development\Elements_UE\Elements_UEGameMode.gen.cpp.obj"
+"C:\Users\Admin\Documents\UE_Projects\Elements\Elements_UE\Intermediate\Build\Win64\x64\UnrealEditor\Development\Elements_UE\Default.rc2.res"
+/OUT:"C:\Users\Admin\Documents\UE_Projects\Elements\Elements_UE\Intermediate\Build\Win64\x64\UnrealEditor\Development\Elements_UE\UnrealEditor-Elements_UE.lib"
