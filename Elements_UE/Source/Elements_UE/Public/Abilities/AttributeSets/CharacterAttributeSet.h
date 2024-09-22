@@ -42,6 +42,14 @@ public:
 	FGameplayAttributeData XP;
 	ATTRIBUTE_ACCESSORS(UCharacterAttributeSet, XP)
 
+
+	// ManaGain is a meta attribute used by the ManaGainExecution to calculate how much mana is recieved from a mana pickup
+	// Temporary value that only exists on the Server. Not replicated.
+	UPROPERTY(BlueprintReadOnly, Category = "Mana")
+	FGameplayAttributeData ManaGain;
+	ATTRIBUTE_ACCESSORS(UCharacterAttributeSet, ManaGain)
+
+
 protected:
 	UFUNCTION()
 	virtual void OnRep_MoveSpeed(const FGameplayAttributeData& OldMoveSpeed);

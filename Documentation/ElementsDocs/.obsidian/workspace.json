@@ -61,14 +61,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Elements Project Reflection - 9-19-2024.md",
+                "file": "Project Organization.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "52b037bc6ef8d9cc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Directory Structure.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -134,7 +146,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Elements Project Reflection - 9-19-2024.md",
+                "file": "Directory Structure.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,7 +163,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Elements Project Reflection - 9-19-2024.md",
+                "file": "Directory Structure.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -174,7 +186,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Elements Project Reflection - 9-19-2024.md"
+                "file": "Directory Structure.md"
               }
             }
           }
@@ -195,13 +207,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "a9b6ca1641d66d7a",
+  "active": "52b037bc6ef8d9cc",
   "lastOpenFiles": [
-    "Task List.md",
-    "Elements Project Reflection - 9-19-2024.md",
-    "Project Organization.md",
-    "Socket Names.md",
     "Animation Notifies.md",
+    "Directory Structure.md",
+    "Project Organization.md",
+    "Elements Project Reflection - 9-19-2024.md",
+    "Task List.md",
+    "Socket Names.md",
     "attachments/Pasted image 20240916005920.png",
     "attachments/Pasted image 20240916005909.png",
     "attachments",
