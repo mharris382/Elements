@@ -1,11 +1,11 @@
-"B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\Win64\UnrealEditor\Inc\Elements_UE\UHT\Elements_UEGameMode.gen.cpp"
-/FI"B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\Win64\x64\Elements_UEEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h"
-/FI"B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\Win64\x64\UnrealEditor\Development\Elements_UE\Definitions.Elements_UE.h"
-/Yu"B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\Win64\x64\Elements_UEEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h"
-/Fp"B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\Win64\x64\Elements_UEEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.pch"
-/Fo"B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\Win64\x64\UnrealEditor\Development\Elements_UE\Elements_UEGameMode.gen.cpp.obj"
-/sourceDependencies "B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\Win64\x64\UnrealEditor\Development\Elements_UE\Elements_UEGameMode.gen.cpp.dep.json"
-@"B:\UnrealEngine5_Projects\_repos4\Elements\Elements_UE\Intermediate\Build\Win64\x64\UnrealEditor\Development\Elements_UE\Elements_UE.Shared.rsp"
+"C:\Users\Admin\Documents\UE_Projects\Elements\Elements_UE\Intermediate\Build\Win64\UnrealEditor\Inc\Elements_UE\UHT\Elements_UEGameMode.gen.cpp"
+/FI"C:\Users\Admin\Documents\UE_Projects\Elements\Elements_UE\Intermediate\Build\Win64\x64\Elements_UEEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h"
+/FI"C:\Users\Admin\Documents\UE_Projects\Elements\Elements_UE\Intermediate\Build\Win64\x64\UnrealEditor\Development\Elements_UE\Definitions.Elements_UE.h"
+/Yu"C:\Users\Admin\Documents\UE_Projects\Elements\Elements_UE\Intermediate\Build\Win64\x64\Elements_UEEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h"
+/Fp"C:\Users\Admin\Documents\UE_Projects\Elements\Elements_UE\Intermediate\Build\Win64\x64\Elements_UEEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.ValApi.Cpp20.h.pch"
+/Fo"C:\Users\Admin\Documents\UE_Projects\Elements\Elements_UE\Intermediate\Build\Win64\x64\UnrealEditor\Development\Elements_UE\Elements_UEGameMode.gen.cpp.obj"
+/sourceDependencies "C:\Users\Admin\Documents\UE_Projects\Elements\Elements_UE\Intermediate\Build\Win64\x64\UnrealEditor\Development\Elements_UE\Elements_UEGameMode.gen.cpp.dep.json"
+@"C:\Users\Admin\Documents\UE_Projects\Elements\Elements_UE\Intermediate\Build\Win64\x64\UnrealEditor\Development\Elements_UE\Elements_UE.Shared.rsp"
 /Zc:inline
 /nologo
 /Oi

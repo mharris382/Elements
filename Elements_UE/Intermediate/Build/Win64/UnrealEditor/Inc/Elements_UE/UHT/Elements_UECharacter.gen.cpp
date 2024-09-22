@@ -250,14 +250,14 @@ AElements_UECharacter::~AElements_UECharacter() {}
 // End Class AElements_UECharacter
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_Statics
+struct Z_CompiledInDeferFile_FID_Users_Admin_Documents_UE_Projects_Elements_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
 		{ Z_Construct_UClass_AElements_UECharacter, AElements_UECharacter::StaticClass, TEXT("AElements_UECharacter"), &Z_Registration_Info_UClass_AElements_UECharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AElements_UECharacter), 1199328441U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_854867721(TEXT("/Script/Elements_UE"),
-	Z_CompiledInDeferFile_FID_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Admin_Documents_UE_Projects_Elements_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_854867721(TEXT("/Script/Elements_UE"),
+	Z_CompiledInDeferFile_FID_Users_Admin_Documents_UE_Projects_Elements_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Admin_Documents_UE_Projects_Elements_Elements_UE_Source_Elements_UE_Elements_UECharacter_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

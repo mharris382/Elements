@@ -1,11 +1,11 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "b:\\unrealengine5_projects\\_repos4\\elements\\elements_ue\\intermediate\\build\\win64\\unrealeditor\\inc\\elements_ue\\uht\\elements_ue.init.gen.cpp",
+        "Source": "c:\\users\\admin\\documents\\ue_projects\\elements\\elements_ue\\intermediate\\build\\win64\\unrealeditor\\inc\\elements_ue\\uht\\elements_ue.init.gen.cpp",
         "ProvidedModule": "",
-        "PCH": "b:\\unrealengine5_projects\\_repos4\\elements\\elements_ue\\intermediate\\build\\win64\\x64\\elements_ueeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "PCH": "c:\\users\\admin\\documents\\ue_projects\\elements\\elements_ue\\intermediate\\build\\win64\\x64\\elements_ueeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
         "Includes": [
-            "b:\\unrealengine5_projects\\_repos4\\elements\\elements_ue\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\elements_ue\\definitions.elements_ue.h"
+            "c:\\users\\admin\\documents\\ue_projects\\elements\\elements_ue\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\elements_ue\\definitions.elements_ue.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

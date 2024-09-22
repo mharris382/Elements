@@ -1,21 +1,21 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "b:\\unrealengine5_projects\\_repos4\\elements\\elements_ue\\intermediate\\build\\win64\\unrealeditor\\inc\\elements_ue\\uht\\elements_uecharacter.gen.cpp",
+        "Source": "c:\\users\\admin\\documents\\ue_projects\\elements\\elements_ue\\intermediate\\build\\win64\\unrealeditor\\inc\\elements_ue\\uht\\elements_uecharacter.gen.cpp",
         "ProvidedModule": "",
-        "PCH": "b:\\unrealengine5_projects\\_repos4\\elements\\elements_ue\\intermediate\\build\\win64\\x64\\elements_ueeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "PCH": "c:\\users\\admin\\documents\\ue_projects\\elements\\elements_ue\\intermediate\\build\\win64\\x64\\elements_ueeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
         "Includes": [
-            "b:\\unrealengine5_projects\\_repos4\\elements\\elements_ue\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\elements_ue\\definitions.elements_ue.h",
-            "b:\\unrealengine5_projects\\_repos4\\elements\\elements_ue\\source\\elements_ue\\elements_uecharacter.h",
-            "a:\\epic\\ue\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\gameframework\\character.h",
-            "a:\\epic\\ue\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\gameframework\\charactermovementreplication.h",
-            "a:\\epic\\ue\\ue_5.4\\engine\\source\\runtime\\experimental\\iris\\core\\public\\iris\\serialization\\irisobjectreferencepackagemap.h",
-            "a:\\epic\\ue\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\iriscore\\uht\\irisobjectreferencepackagemap.generated.h",
-            "a:\\epic\\ue\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\charactermovementreplication.generated.h",
-            "a:\\epic\\ue\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\gameframework\\rootmotionsource.h",
-            "a:\\epic\\ue\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\rootmotionsource.generated.h",
-            "a:\\epic\\ue\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\character.generated.h",
-            "b:\\unrealengine5_projects\\_repos4\\elements\\elements_ue\\intermediate\\build\\win64\\unrealeditor\\inc\\elements_ue\\uht\\elements_uecharacter.generated.h"
+            "c:\\users\\admin\\documents\\ue_projects\\elements\\elements_ue\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\elements_ue\\definitions.elements_ue.h",
+            "c:\\users\\admin\\documents\\ue_projects\\elements\\elements_ue\\source\\elements_ue\\elements_uecharacter.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\gameframework\\character.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\gameframework\\charactermovementreplication.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\source\\runtime\\experimental\\iris\\core\\public\\iris\\serialization\\irisobjectreferencepackagemap.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\iriscore\\uht\\irisobjectreferencepackagemap.generated.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\charactermovementreplication.generated.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\gameframework\\rootmotionsource.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\rootmotionsource.generated.h",
+            "c:\\program files\\epic games\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\character.generated.h",
+            "c:\\users\\admin\\documents\\ue_projects\\elements\\elements_ue\\intermediate\\build\\win64\\unrealeditor\\inc\\elements_ue\\uht\\elements_uecharacter.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

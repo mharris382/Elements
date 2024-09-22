@@ -78,14 +78,14 @@ AElements_UEGameMode::~AElements_UEGameMode() {}
 // End Class AElements_UEGameMode
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h_Statics
+struct Z_CompiledInDeferFile_FID_Users_Admin_Documents_UE_Projects_Elements_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
 		{ Z_Construct_UClass_AElements_UEGameMode, AElements_UEGameMode::StaticClass, TEXT("AElements_UEGameMode"), &Z_Registration_Info_UClass_AElements_UEGameMode, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AElements_UEGameMode), 3004765851U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h_1095535880(TEXT("/Script/Elements_UE"),
-	Z_CompiledInDeferFile_FID_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_Admin_Documents_UE_Projects_Elements_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h_1095535880(TEXT("/Script/Elements_UE"),
+	Z_CompiledInDeferFile_FID_Users_Admin_Documents_UE_Projects_Elements_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_Admin_Documents_UE_Projects_Elements_Elements_UE_Source_Elements_UE_Elements_UEGameMode_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration
