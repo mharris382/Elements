@@ -12,13 +12,44 @@ public class Elements_UE : ModuleRules
 			"Core", 
 			"CoreUObject", 
 			"Engine",
+            "PhysicsCore",
             "AIModule",
             "InputCore", 
 			"EnhancedInput" ,
             "GameplayTags",
 			"GameplayTasks",
             "GameplayAbilities",
-			"Niagara"
+			"Niagara",
+            "DataRegistry"
         });
-	}
+
+
+        PrivateDependencyModuleNames.AddRange(
+            new string[] {
+                //"Slate",
+                //"SlateCore",
+                //"RenderCore",
+                //"DeveloperSettings",
+                //"NetCore",
+                //"RHI",
+                //"Projects",
+                //"Gauntlet",
+                "UMG",
+                "CommonUI",
+                "CommonInput",
+                //"GameSettings",
+                //"CommonGame",
+                //"CommonUser",
+                //"GameSubtitles",
+                //"GameplayMessageRuntime",
+                //"AudioMixer",
+                //"NetworkReplayStreaming",
+                //"UIExtension",
+                //"ClientPilot",
+                //"AudioModulation",
+                //"EngineSettings",
+                //"DTLSHandlerComponent",
+            }
+        );
+    }
 }
