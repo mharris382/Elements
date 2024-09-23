@@ -1,0 +1,13 @@
+/*
+Instructions to setup this material:
+- copy material.uasset and open the copy
+- copy the shader code below and paste it into the Custom node
+- assign Impact_02_albedo.png to the Albedo texture in the graph
+- assign Impact_02_orm.png to the ORM texture in the graph
+- assign Impact_02_emission.png to the Emission texture in the graph
+- assign Impact_02_normal.png to the Normal texture in the graph
+- assign Impact_02_height.png to the Height texture in the graph
+*/
+
+
+
