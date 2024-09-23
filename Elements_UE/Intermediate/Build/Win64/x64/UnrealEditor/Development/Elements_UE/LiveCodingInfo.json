@@ -16,6 +16,7 @@
 			"ElementInterface.gen.cpp.obj",
 			"ElementsAbilitySystemComponent.gen.cpp.obj",
 			"ElementsAbilitySystemGlobals.gen.cpp.obj",
+			"ElementsActivatableWidget.gen.cpp.obj",
 			"ElementsBlueprintFunctionLibrary.gen.cpp.obj",
 			"ElementsGameMode.gen.cpp.obj",
 			"ElementsGameplayAbility.gen.cpp.obj",
@@ -60,6 +61,7 @@
 			"ElementsPlayerController.cpp.obj",
 			"ElementsPlayerState.cpp.obj",
 			"Projectile.cpp.obj",
+			"ElementsActivatableWidget.cpp.obj",
 			"Elements_UE.init.gen.cpp.obj",
 			"Elements_UECharacter.gen.cpp.obj",
 			"Elements_UEGameMode.gen.cpp.obj"
