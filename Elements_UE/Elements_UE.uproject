@@ -62,6 +62,10 @@
 			"Name": "RadialMenu",
 			"Enabled": true,
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/be623df092c442609c20a840630031fb"
+		},
+		{
+			"Name": "GameplayBehaviors",
+			"Enabled": true
 		}
 	]
 }
