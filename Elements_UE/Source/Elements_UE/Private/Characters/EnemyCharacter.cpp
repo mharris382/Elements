@@ -41,17 +41,13 @@ void AEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (GEngine) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("Begin Play"));
-	}
-
 	if (AbilitySystemComponent.IsValid())
 	{
 		AbilitySystemComponent->InitAbilityActorInfo(this, this);
 		InitializeAttributes();
 		AddStartupEffects();
 		AddCharacterAbilities();
-		UE_LOG(LogTemp, Error, TEXT("Initialized Enemy Abilities"));
+		//UE_LOG(LogTemp, Error, TEXT("Initialized Enemy Abilities"));
 
 
 		
@@ -96,7 +92,7 @@ void AEnemyCharacter::HealthChanged(const FOnAttributeChangeData& Data)
 	{
 		Die();
 	}
-	UE_LOG(LogTemp, Warning, TEXT("HealthChanged: %f"), Data.NewValue);
+	UE_LOG(LogTemp, Warning, TEXT("Character %s : HealthChanged: %f"), *GetNameSafe(this), Data.NewValue);
 }
 
 void AEnemyCharacter::StunTagChanged(const FGameplayTag CallbackTag, int32 NewCount)
@@ -112,5 +108,5 @@ void AEnemyCharacter::StunTagChanged(const FGameplayTag CallbackTag, int32 NewCo
 
 		AbilitySystemComponent->CancelAbilities(&AbilityTagsToCancel, &AbilityTagsToIgnore);
 	}
-	UE_LOG(LogTemp, Warning, TEXT("StunTagChanged: %d"), NewCount);
+	//UE_LOG(LogTemp, Warning, TEXT("StunTagChanged: %d"), NewCount);
 }

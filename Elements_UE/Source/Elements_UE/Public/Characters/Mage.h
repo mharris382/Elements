@@ -101,6 +101,9 @@ protected:
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	// Client only
+	virtual void OnRep_PlayerState() override;
+
 	// To add mapping context
 	virtual void BeginPlay();
 
@@ -115,9 +118,17 @@ protected:
 
 	void EndJump();
 
+
 	virtual void HandleAbilityInputPressed(EAbilityInputID InputID);
 	virtual void HandleAbilityInputReleased(EAbilityInputID InputID);
 
 private: 
+
+	void BindASCInputs();
+
+	bool hasASCInputBound;
+	bool hasASC;
+
+	UInputComponent* InputComponent;
 	TMap<FGameplayTag, FInputAbilityMapping> AbilityTagToInputActionMap;
 };

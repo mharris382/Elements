@@ -53,8 +53,15 @@ public:
 	FGameplayAttributeData ManaRegenRate;
 	ATTRIBUTE_ACCESSORS(UAttributeSetBase, ManaRegenRate)
 
-		// Damage is a meta attribute used by the DamageExecution to calculate final damage, which then turns into -Health
-		// Temporary value that only exists on the Server. Not replicated.
+
+	//// Damage is a meta attribute used by the ManaGainExecution to calculate final mana gained, which then turns into -Mana
+	//// Temporary value that only exists on the Server. Not replicated.
+	//UPROPERTY(BlueprintReadOnly, Category = "Mana")
+	//FGameplayAttributeData ManaGain;
+	//ATTRIBUTE_ACCESSORS(UAttributeSetBase, ManaGain)
+
+	// Damage is a meta attribute used by the DamageExecution to calculate final damage, which then turns into -Health
+	// Temporary value that only exists on the Server. Not replicated.
 	UPROPERTY(BlueprintReadOnly, Category = "Damage")
 	FGameplayAttributeData Damage;
 	ATTRIBUTE_ACCESSORS(UAttributeSetBase, Damage)

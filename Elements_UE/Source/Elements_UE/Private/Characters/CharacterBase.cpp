@@ -191,6 +191,11 @@ void ACharacterBase::AddCharacterAbilities()
 	{
 		return;
 	}
+	if (CharacterAbilities.Num() <= 0)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("ACharacterBase::AddCharacterAbilities: No default abilities assigned to character: %s"), *GetName());
+		return;
+	}
 	for (TSubclassOf<UElementsGameplayAbility>& StartupAbility : CharacterAbilities)
 	{
 		AbilitySystemComponent->GiveAbility(
@@ -205,7 +210,8 @@ void ACharacterBase::InitializeAttributes()
 	if (!AbilitySystemComponent.IsValid())
 	{
 		if (GEngine) {
-			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("No Ability System Component!!!"));
+			FString Message1 = FString::Printf(TEXT("No Ability System Component on %s!!!"), *GetName());
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red,Message1);
 		}
 		UE_LOG(LogTemp, Error, TEXT("%s() Missing Ability System Component."), *FString(__FUNCTION__), *GetName());
 		return;
@@ -213,7 +219,8 @@ void ACharacterBase::InitializeAttributes()
 	if (!DefaultAttributes)
 	{
 		if (GEngine) {
-			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("No Default Attributes!!!"));
+			FString Message2 = FString::Printf(TEXT("No Default Attributes on %s!!!"), *GetName());
+			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, Message2);
 		}
 		UE_LOG(LogTemp, Error, TEXT("%s() Missing DefaultAttributes for %s. Please fill in the character's Blueprint."), *FString(__FUNCTION__), *GetName());
 		return;
@@ -227,10 +234,6 @@ void ACharacterBase::InitializeAttributes()
 	if (NewHandle.IsValid())
 	{
 		FActiveGameplayEffectHandle ActiveGEHandle = AbilitySystemComponent->ApplyGameplayEffectSpecToTarget(*NewHandle.Data.Get(), AbilitySystemComponent.Get());
-	}
-
-	if (GEngine) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, TEXT("No Ability System Component!!!"));
 	}
 }
 

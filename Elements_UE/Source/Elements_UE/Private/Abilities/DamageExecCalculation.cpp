@@ -84,18 +84,6 @@ void UDamageExecCalculation::Execute_Implementation(const FGameplayEffectCustomE
 				FGameplayTag SourceElementTag = ElementSubsystem->GetElementTag(*SourceTags);
 				FGameplayTag TargetElementTag = ElementSubsystem->GetElementTag(*TargetTags);
 				Relationship = ElementSubsystem->GetElementRelationship(SourceElementTag, TargetElementTag);
-				switch (Relationship)
-				{
-				case EElementRelationship::Neutral:
-					Multiplier = 1.0f;
-					break;
-				case EElementRelationship::Strong:
-					Multiplier = 2.0f;
-					break;
-				case EElementRelationship::Weak:
-					Multiplier = 0.5f;
-					break;
-				}
 			}
 			else
 			{
