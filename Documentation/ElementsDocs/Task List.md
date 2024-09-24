@@ -105,3 +105,25 @@
 	- [ ] add parameters: wall, window, door, corner, spawn corners
 	- [x] add inputs: walls, doors, windows, corners
 	- [x] add outputs: set
+
+
+
+
+# Spawner Bitmask
+wall vs corner = 1 (0 = wall, 1 = corner)
+
+wall type = bits 2,3
+00 = none
+01 = window
+10 = door
+11 = wall
+
+walltype bits (0-3)
+cornertype bits (4-5)
+
+## Corners Bitmask
+corner type is set? = 2  (0 = no, 1 = yes)
+corner type = 3 (1 = out, 0 = inside)
+
+allow windows
+allow doors
