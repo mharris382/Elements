@@ -12,6 +12,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "GameplayTagContainer.h"
 #include "Subsystems/GameInstanceSubsystem.h"
+#include "Player/ElementsPlayerController.h"
 #include "Player/ElementsPlayerState.h"
 #include "InputActionValue.h"
 #include "ElementsGameMode.h"
@@ -80,9 +81,6 @@ void AMage::PossessedBy(AController* NewController)
 		//PlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(PlayerState, this);
 
 		AttributeSetBase = PS->GetAttributeSetBase();
-		if (GEngine) {
-			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("AMage::SetupPlayerInputComponent: Initialized Mage Ability System from PlayerState"));
-		}
 		InitializeAttributes();
 
 		// Forcibly set the DeadTag count to 0
@@ -97,16 +95,16 @@ void AMage::PossessedBy(AController* NewController)
 
 		AddCharacterAbilities();
 	}
-	else {
-		if (GEngine) {
-			GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("AMage::SetupPlayerInputComponent: No PlayerState of Type AElementsPlayerState found"));
-		}
+	else 
+	{
+		UE_LOG(LogTemp, Error, TEXT("AMage::PossessedBy: No PlayerState of Type AElementsPlayerState found for"));
 	}
 }
 
 void AMage::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
 	if (APlayerController* PlayerController = Cast<APlayerController>(GetController()))
 	{
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
@@ -118,36 +116,70 @@ void AMage::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	{
 		UE_LOG(LogTemp, Error, TEXT("AMage::SetupPlayerInputComponent: PlayerController is not valid"));
 	}
-	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent)) 
+	UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent);
+	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AMage::Move);
+	EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMage::Look);
+	for (const FInputAbilityMapping& Mapping : InputAbilityMappings)
 	{
-		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AMage::Move);
-		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMage::Look);
-		for (const FInputAbilityMapping& Mapping : InputAbilityMappings)
+		if (Mapping.AbilityTags.IsValid() && Mapping.InputAction)
 		{
-			if (Mapping.AbilityTags.IsValid() && Mapping.InputAction)
-			{
-				EnhancedInputComponent->BindAction(Mapping.InputAction, ETriggerEvent::Started, this, &AMage::HandleAbilityInputPressed, Mapping.InputID);
-				EnhancedInputComponent->BindAction(Mapping.InputAction, ETriggerEvent::Completed, this, &AMage::HandleAbilityInputReleased, Mapping.InputID);
-			}
-			else
-			{
-				UE_LOG(LogTemp, Error, TEXT("AMage::SetupPlayerInputComponent: AbilityTag or InputAction is not valid"))
-			}
-			/*if (Mapping.AbilityTag.IsValid())
-			{
-				EnhancedInputComponent->BindAction(Mapping.InputAction, Mapping.TriggerEvent, this, Mapping.AbilityTag, Mapping.AbilityInputID);
-			}
-			else
-			{
-				UE_LOG(LogTemp, Error, TEXT("AbilityTag is not valid"))
-			}*/
+			EnhancedInputComponent->BindAction(Mapping.InputAction, ETriggerEvent::Started, this, &AMage::HandleAbilityInputPressed, Mapping.InputID);
+			EnhancedInputComponent->BindAction(Mapping.InputAction, ETriggerEvent::Completed, this, &AMage::HandleAbilityInputReleased, Mapping.InputID);
 		}
+		else
+		{
+			UE_LOG(LogTemp, Error, TEXT("AMage::SetupPlayerInputComponent: AbilityTag or InputAction is not valid"))
+		}
+	}
+	BindASCInputs();
+	
+}
+
+void AMage::OnRep_PlayerState()
+{
+	Super::OnRep_PlayerState();
+	AElementsPlayerState* PS = GetPlayerState<AElementsPlayerState>();
+	if (PS)
+	{
+		hasASC = true;
+
+		// Set the ASC for clients. Server does this in PossessedBy.
+		AbilitySystemComponent = Cast<UElementsAbilitySystemComponent>(PS->GetAbilitySystemComponent());
+
+		// Init ASC Actor Info for clients. Server will init its ASC when it possesses a new Actor.
+		AbilitySystemComponent->InitAbilityActorInfo(PS, this);
+		
+		// Bind player input to the AbilitySystemComponent. Also called in SetupPlayerInputComponent because of a potential race condition.
+		BindASCInputs();
+
+
+		AttributeSetBase = PS->GetAttributeSetBase();
+
+		AElementsPlayerController* PC = Cast<AElementsPlayerController>(GetController());
+		if (PC)
+		{
+			PC->CreateHUD();
+		}
+
+		InitializeAttributes();
+		AddStartupEffects();
+		AddCharacterAbilities();
+
+
+		//// Respawn specific things that won't affect first possession.
+		//
+		//// Forcibly set the DeadTag count to 0
+		AbilitySystemComponent->SetTagMapCount(DeadTag, 0);
+		//
+		//// Set Health/Mana/Stamina to their max. This is only necessary for *Respawn*.
+		SetHealth(GetMaxHealth());
+		SetMana(GetMaxMana());
+		
 	}
 	else
 	{
-		UE_LOG(LogTemp, Error, TEXT("AMage::SetupPlayerInputComponent: PlayerInputComponent is not EnhancedInputComponent"));
+		UE_LOG(LogTemp, Error, TEXT("AMage::OnRep_PlayerState: No PlayerState of Type AElementsPlayerState found for"));
 	}
-	
 }
 
 
@@ -239,6 +271,41 @@ void AMage::HandleAbilityInputReleased(EAbilityInputID InputID)
 	else 
 	{
 		UE_LOG(LogTemp, Error, TEXT("Mage.HandleAbilityInputReleased: AbilitySystemComponent is not valid"));
+	}
+}
+
+void AMage::BindASCInputs()
+{
+	if (!hasASCInputBound && AbilitySystemComponent.IsValid() && IsValid(InputComponent))
+	{
+		UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(InputComponent);
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AMage::Move);
+		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMage::Look);
+		for (const FInputAbilityMapping& Mapping : InputAbilityMappings)
+		{
+			if (Mapping.AbilityTags.IsValid() && Mapping.InputAction)
+			{
+				EnhancedInputComponent->BindAction(Mapping.InputAction, ETriggerEvent::Started, this, &AMage::HandleAbilityInputPressed, Mapping.InputID);
+				EnhancedInputComponent->BindAction(Mapping.InputAction, ETriggerEvent::Completed, this, &AMage::HandleAbilityInputReleased, Mapping.InputID);
+			}
+			else
+			{
+				UE_LOG(LogTemp, Error, TEXT("AMage::SetupPlayerInputComponent: AbilityTag or InputAction is not valid"))
+			}
+		}
+		hasASCInputBound = true;
+	}
+	else
+	{
+		
+		if (!AbilitySystemComponent.IsValid())
+		{
+			UE_LOG(LogTemp, Error, TEXT("AMage::BindASCInputs: AbilitySystemComponent is not valid"));
+		}
+		if (IsValid(InputComponent))
+		{
+			UE_LOG(LogTemp, Error, TEXT("AMage::BindASCInputs: InputComponent is not valid"));
+		}
 	}
 }
 

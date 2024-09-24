@@ -26,7 +26,7 @@ public:
 	UCharacterAttributeSet();
 
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
-
+	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Movement", ReplicatedUsing = OnRep_MoveSpeed)
@@ -50,6 +50,11 @@ public:
 	ATTRIBUTE_ACCESSORS(UCharacterAttributeSet, ManaGain)
 
 
+	UPROPERTY(BlueprintReadOnly, Category = "Mana", ReplicatedUsing = OnRep_ManaGainBoost)
+	FGameplayAttributeData ManaGainBoost;
+	ATTRIBUTE_ACCESSORS(UCharacterAttributeSet, ManaGainBoost)
+
+
 protected:
 	UFUNCTION()
 	virtual void OnRep_MoveSpeed(const FGameplayAttributeData& OldMoveSpeed);
@@ -59,4 +64,9 @@ protected:
 
 	UFUNCTION()
 	virtual void OnRep_XP(const FGameplayAttributeData& OldXP);
+
+	UFUNCTION()
+	virtual void OnRep_ManaGainBoost(const FGameplayAttributeData& OldManaGainBoost);
+	
+
 };
