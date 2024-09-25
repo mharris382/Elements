@@ -23,6 +23,21 @@ void AElementalActor::BeginPlay()
 {
 	Super::BeginPlay();
 	FElementData ElementData;
+
+	//check if instigator is a character or elemental actor (which potentially was part of a chain that started with a character)
+	if (GetInstigator())
+	{
+		ACharacterBase* Character = Cast<ACharacterBase>(GetInstigator());
+		AElementalActor* ElementalActor = Cast<AElementalActor>(GetInstigator());
+		if (Character) {
+			OriginalInstigatorCharacter = Character;
+		}
+		else if(ElementalActor)
+		{
+			OriginalInstigatorCharacter = ElementalActor->OriginalInstigatorCharacter;
+		}
+	}
+
 	if (ValidateElementTagOnBeginPlay(ElementData))
 	{
 		UpdateElementVisuals(ElementTag, ElementData.ElementColorID);

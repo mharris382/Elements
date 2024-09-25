@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Interfaces/ElementInterface.h"
-
+#include "Characters/CharacterBase.h"
 #include "GameplayTagContainer.h"
 #include "ElementalActor.generated.h"
 
@@ -18,11 +18,20 @@ public:
 	// Sets default values for this actor's properties
 	AElementalActor();
 
+	
+
 	UPROPERTY(BlueprintReadWrite, Meta = (ExposeOnSpawn = true))
 	FGameplayTag ElementTag;
 
 	FGameplayTag GetElementTag();
 
+	//this will happen automatically if element is not specified
+	//UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Element")
+	//bool bInheritElementFromInstigator = true;
+
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Element")
+	ACharacterBase* OriginalInstigatorCharacter = nullptr;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -39,6 +48,10 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	
+
+	
 
 private:
 	bool ValidateElementTagOnBeginPlay(struct FElementData& OutElementData);
