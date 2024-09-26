@@ -28,27 +28,27 @@ void AElementalActor::BeginPlay()
 	if (GetInstigator())
 	{
 		ACharacterBase* Character = Cast<ACharacterBase>(GetInstigator());
-		AElementalActor* ElementalActor = Cast<AElementalActor>(GetInstigator());
+		//AElementalActor* ElementalActor = Cast<AElementalActor>(GetInstigator());
 		if (Character) {
 			OriginalInstigatorCharacter = Character;
 		}
-		else if(ElementalActor)
+		/*else if(ElementalActor)
 		{
 			OriginalInstigatorCharacter = ElementalActor->OriginalInstigatorCharacter;
-		}
+		}*/
 	}
-
+	GetElementListeners();
 	if (ValidateElementTagOnBeginPlay(ElementData))
 	{
-		UpdateElementVisuals(ElementTag, ElementData.ElementColorID);
+		ApplyElementVisuals(ElementTag, ElementData.ElementColorID);
 	}
 	else 
 	{
-		if (GEngine)
-		{
-			FString msg = FString::Printf(TEXT("AElementalActor::BeginPlay: ElementTag is not valid for ElementalActor %s"), *GetNameSafe(this));
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, msg);
-		}
+		//if (GEngine)
+		//{
+		//	FString msg = FString::Printf(TEXT("AElementalActor::BeginPlay: ElementTag is not valid for ElementalActor %s"), *GetNameSafe(this));
+		//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, msg);
+		//}
 		UE_LOG(LogTemp, Error, TEXT("AElementalActor::BeginPlay: ElementTag is not valid for ElementalActor %s"), *GetNameSafe(this))
 	}
 }
@@ -64,6 +64,16 @@ void AElementalActor::Tick(float DeltaTime)
 
 }
 
+void AElementalActor::ApplyElementVisuals(FGameplayTag InElementTag, FLinearColor ElementColor)
+{
+	UpdateElementVisuals(ElementTag, ElementColor);
+	for (UObject* Listener : ElementListeners)
+	{
+		IElementListenerInterface* ElementListener = Cast<IElementListenerInterface>(Listener);
+		ElementListener->Execute_SetElement(Listener, InElementTag, ElementColor);
+	}
+}
+
 bool AElementalActor::ValidateElementTagOnBeginPlay(FElementData& OutElementData)
 {
 	if (ElementTag.IsValid())
@@ -72,14 +82,14 @@ bool AElementalActor::ValidateElementTagOnBeginPlay(FElementData& OutElementData
 		{
 			return true;
 		}
-		else if (AttemptToResolveElementTagFromInstigator(OutElementData))
-		{
-			return true;
-		}
 		else
 		{
 			UE_LOG(LogTemp, Error, TEXT("AElementalActor::BeginPlay: ElementTag %s is not valid %s"), *ElementTag.ToString(), *GetNameSafe(this))
 		}
+	}
+	else if (AttemptToResolveElementTagFromInstigator(OutElementData))
+	{
+		return true;
 	}
 	return false;
 }
@@ -95,7 +105,7 @@ bool AElementalActor::AttemptToResolveElementTagFromInstigator(FElementData& Out
 		IElementInterface* ElementInterface = Cast<IElementInterface>(GetInstigator());
 		if (ElementInterface)
 		{
-			ElementTag = ElementInterface->GetElementTag();
+			ElementTag = ElementInterface->Execute_GetElementTag(GetInstigator());
 			if (UElementsBlueprintFunctionLibrary::GetElementDataFromTag(this, ElementTag, OutElementData))
 			{
 				return true;
@@ -107,5 +117,17 @@ bool AElementalActor::AttemptToResolveElementTagFromInstigator(FElementData& Out
 		}
 	}
 	return false;
+}
+
+void AElementalActor::GetElementListeners()
+{
+	ElementListeners.Empty();
+	TArray<UActorComponent*> Components = GetComponentsByInterface(UElementListenerInterface::StaticClass());
+	for (UActorComponent* Component : Components)
+	{
+		
+		ElementListeners.Add(Component);
+		
+	}
 }
 

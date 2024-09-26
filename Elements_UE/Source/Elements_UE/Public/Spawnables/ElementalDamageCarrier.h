@@ -24,7 +24,9 @@ public:
 	FGameplayEffectSpecHandle DamageEffectSpecHandle;
 
 
-	virtual bool CanTargetActor(AActor* TargetActor) const;
+	virtual bool CanTargetActor(AActor* TargetActor);
+
+	UAbilitySystemComponent* GetAbilitySystemComponentFrom(AActor* TargetActor);
 
 	UFUNCTION(BlueprintCallable)
 	virtual bool TryApplyDamage(AActor* TargetActor);
@@ -36,6 +38,13 @@ public:
 
 	//NOT used yet, but could be useful for optimization
 	virtual void ResetForPooling();
+
+	virtual FHitResult GetHitResultFromActor(AActor* TargetActor);
+
+	UFUNCTION(BlueprintNativeEvent, Category = "Elemental Damage Carrier")
+	void OnDamageEffectApplied(AActor* Target, UAbilitySystemComponent* TargetASC, FHitResult HitResult);
+
+	void OnDamageEffectApplied_Implementation(AActor* Target, UAbilitySystemComponent* TargetASC, FHitResult HitResult);
 
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Elemental Damage Carrier")

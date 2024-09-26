@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Interfaces/ElementInterface.h"
+#include "Interfaces/ElementListenerInterface.h"
 #include "Characters/CharacterBase.h"
 #include "GameplayTagContainer.h"
 #include "ElementalActor.generated.h"
@@ -20,7 +21,7 @@ public:
 
 	
 
-	UPROPERTY(BlueprintReadWrite, Meta = (ExposeOnSpawn = true))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Meta = (ExposeOnSpawn = true), Category = "Element")
 	FGameplayTag ElementTag;
 
 	FGameplayTag GetElementTag();
@@ -35,6 +36,7 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
 
 
 
@@ -54,6 +56,14 @@ public:
 	
 
 private:
+
+	void ApplyElementVisuals(FGameplayTag InElementTag, FLinearColor ElementColor);
+
 	bool ValidateElementTagOnBeginPlay(struct FElementData& OutElementData);
 	bool AttemptToResolveElementTagFromInstigator(FElementData& OutElementData);
+
+
+	void GetElementListeners();
+
+	TArray<UObject*> ElementListeners;
 };
