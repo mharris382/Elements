@@ -30,7 +30,7 @@ struct ManaGainStatics
 	}
 };
 
-static const ManaGainStatics& DamageStatics()
+static const ManaGainStatics& MGStatics()
 {
 	static ManaGainStatics DStatics;
 	return DStatics;
@@ -39,8 +39,8 @@ static const ManaGainStatics& DamageStatics()
 
 UManaGainExecCalculation::UManaGainExecCalculation()
 {
-	RelevantAttributesToCapture.Add(DamageStatics().ManaGainDef);
-	RelevantAttributesToCapture.Add(DamageStatics().ManaGainBoostDef);
+	RelevantAttributesToCapture.Add(MGStatics().ManaGainDef);
+	RelevantAttributesToCapture.Add(MGStatics().ManaGainBoostDef);
 }
 
 void UManaGainExecCalculation::Execute_Implementation(const FGameplayEffectCustomExecutionParameters& ExecutionParams, OUT FGameplayEffectCustomExecutionOutput& OutExecutionOutput) const
@@ -88,12 +88,12 @@ void UManaGainExecCalculation::Execute_Implementation(const FGameplayEffectCusto
 
 
 	float Boost = 0.f;
-	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(ManaGainStatics().ManaGainBoostDef, FAggregatorEvaluateParameters(), Boost);
+	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(MGStatics().ManaGainBoostDef, FAggregatorEvaluateParameters(), Boost);
 	Boost /= 100.f;
 
 	float ManaGain = 0.f;
 	// Capture optional damage value set on the damage GE as a CalculationModifier under the ExecutionCalculation
-	const bool manaExecutionModifierFound = ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(ManaGainStatics().ManaGainDef, EvaluationParameters, ManaGain);
+	const bool manaExecutionModifierFound = ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(MGStatics().ManaGainDef, EvaluationParameters, ManaGain);
 	const float setByCallerMana = Spec.GetSetByCallerMagnitude(FGameplayTag::RequestGameplayTag(FName("Data.ManaGain")), false, -1.0f);
 
 	ManaGain += FMath::Max<float>(setByCallerMana, 0.0f);
@@ -112,7 +112,7 @@ void UManaGainExecCalculation::Execute_Implementation(const FGameplayEffectCusto
 		Boost                           // {4}
 	);
 
-	OutExecutionOutput.AddOutputModifier(FGameplayModifierEvaluatedData(DamageStatics().ManaGainProperty, EGameplayModOp::Additive, TotalManaGain));
+	OutExecutionOutput.AddOutputModifier(FGameplayModifierEvaluatedData(MGStatics().ManaGainProperty, EGameplayModOp::Additive, TotalManaGain));
 }
 
 float UManaGainExecCalculation::GetMultiplierForRelationship(EElementRelationship Relationship) const
