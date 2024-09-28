@@ -46,12 +46,11 @@ UManaGainExecCalculation::UManaGainExecCalculation()
 void UManaGainExecCalculation::Execute_Implementation(const FGameplayEffectCustomExecutionParameters& ExecutionParams, OUT FGameplayEffectCustomExecutionOutput& OutExecutionOutput) const
 {
 	UAbilitySystemComponent* TargetASC = ExecutionParams.GetTargetAbilitySystemComponent();
-	if (!ExecutionParams.GetPassedInTags().IsValid() || ExecutionParams.GetPassedInTags().IsEmpty())
+	/*if (!ExecutionParams.GetPassedInTags().IsValid() || ExecutionParams.GetPassedInTags().IsEmpty())
 	{
 		UE_LOG(LogTemp, Error, TEXT("UManaGainExecCalculation::Execute_Implementation: Mana Gain not given an elemenet tag!"));
 		return;
-	}
-	const FGameplayTagContainer* SourceTags = &ExecutionParams.GetPassedInTags();
+	}*/
 
 	AActor* TargetActor = TargetASC ? TargetASC->GetAvatarActor() : nullptr;
 
@@ -62,6 +61,8 @@ void UManaGainExecCalculation::Execute_Implementation(const FGameplayEffectCusto
 	}
 
 	const FGameplayEffectSpec& Spec = ExecutionParams.GetOwningSpec();
+	
+	const FGameplayTagContainer* SourceTags = &Spec.GetDynamicAssetTags();
 
 	// Gather the tags from the source and target as that can affect which buffs should be used
 	const FGameplayTagContainer* TargetTags = Spec.CapturedTargetTags.GetAggregatedTags();
