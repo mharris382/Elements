@@ -2,6 +2,7 @@
 
 
 #include "Mana/ManaPickup.h"
+#include "Net/UnrealNetwork.h"
 #include "Characters/CharacterBase.h"
 #include "Abilities/AttributeSets/CharacterAttributeSet.h"
 
@@ -10,7 +11,24 @@ AManaPickup::AManaPickup()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	bAlwaysRelevant = true;
+	bReplicates = true;
+}
 
+void AManaPickup::OnRep_ElementTag(const FGameplayTag& OldElementTag)
+{
+	FElementData ElementData;
+	UElementSubsystem* ElementSubsystem = GetGameInstance()->GetSubsystem<UElementSubsystem>();
+	if (ElementSubsystem)
+	{
+		// Now you can use ElementSubsystem
+		ElementSubsystem->GetElementDataFromTag(ElementTag, ElementData);
+		UpdateElementVisuals(ElementData);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Log, TEXT("Element Subsystem Not Found"));
+	}
 }
 
 // Called when the game starts or when spawned
@@ -18,6 +36,13 @@ void AManaPickup::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+void AManaPickup::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	//DOREPLIFETIME(AManaPickup, ElementTag);
+	DOREPLIFETIME_CONDITION_NOTIFY(AManaPickup, ElementTag, COND_None, REPNOTIFY_Always);
 }
 
 // Called every frame
@@ -60,9 +85,16 @@ void AManaPickup::SetManaAmount(float NewManaAmount)
 
 void AManaPickup::SetElementType(FGameplayTag NewElementTag)
 {
+	if (GetLocalRole() != ROLE_Authority)
+	{
+		return;
+	}
+	else
+	{
+		OnRep_ElementTag(ElementTag);
+	}
 	FElementData ElementData;
 	UElementSubsystem* ElementSubsystem = GetGameInstance()->GetSubsystem<UElementSubsystem>();
-	ElementTag = NewElementTag;
 	if (ElementSubsystem)
 	{
 		// Now you can use ElementSubsystem
@@ -73,4 +105,5 @@ void AManaPickup::SetElementType(FGameplayTag NewElementTag)
 	{
 		UE_LOG(LogTemp, Log, TEXT("Element Subsystem Not Found"));
 	}
+	ElementTag = NewElementTag;
 }

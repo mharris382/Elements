@@ -18,6 +18,25 @@ FGameplayTag AElementalActor::GetElementTag()
 	return ElementTag;
 }
 
+//void AElementalActor::OnRep_ElementTag(const FGameplayTag& OldElementTag)
+//{
+//	FElementData ElementData;
+//	GetElementListeners();
+//	if (UElementsBlueprintFunctionLibrary::GetElementDataFromTag(this, ElementTag, ElementData))
+//	{
+//		ApplyElementVisuals(ElementTag, ElementData.ElementColorID);
+//	}
+//	else
+//	{
+//		//if (GEngine)
+//		//{
+//		//	FString msg = FString::Printf(TEXT("AElementalActor::OnRep_ElementTag: ElementTag is not valid for ElementalActor %s"), *GetNameSafe(this));
+//		//	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, msg);
+//		//}
+//		UE_LOG(LogTemp, Error, TEXT("AElementalActor::OnRep_ElementTag: ElementTag is not valid for ElementalActor %s"), *GetNameSafe(this))
+//	}
+//}
+
 // Called when the game starts or when spawned
 void AElementalActor::BeginPlay()
 {
@@ -31,6 +50,7 @@ void AElementalActor::BeginPlay()
 		//AElementalActor* ElementalActor = Cast<AElementalActor>(GetInstigator());
 		if (Character) {
 			OriginalInstigatorCharacter = Character;
+			ElementTag = Character->GetCharacterElement();
 		}
 		/*else if(ElementalActor)
 		{

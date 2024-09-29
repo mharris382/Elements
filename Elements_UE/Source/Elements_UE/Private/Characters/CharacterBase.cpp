@@ -300,7 +300,7 @@ void ACharacterBase::Die()
 	OnCharacterDied.Broadcast(this);
 
 	UWorld* world = GetWorld();
-	if (HasAuthority() && world) {
+	if (world) {
 		AElementsGameMode* GameMode = Cast<AElementsGameMode>(world->GetAuthGameMode());
 		if (GameMode)
 		{

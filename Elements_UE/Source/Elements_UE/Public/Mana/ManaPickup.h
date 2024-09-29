@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "GameplayTagContainer.h"
 #include "ElementSubsystem.h"
+
 #include "ManaPickup.generated.h"
 
 UCLASS()
@@ -17,15 +18,20 @@ public:
 	// Sets default values for this actor's properties
 	AManaPickup();
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Meta = (ExposeOnSpawn = true))
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Meta = (ExposeOnSpawn = true), ReplicatedUsing = OnRep_ElementTag)
 	FGameplayTag ElementTag;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Meta = (ExposeOnSpawn = true))
 	float ManaAmount;
 
+	UFUNCTION()
+	void OnRep_ElementTag(const FGameplayTag& OldElementTag);
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 public:	
 	// Called every frame
