@@ -136,6 +136,7 @@ void AElementsGameMode::SpawnManaPickup(ACharacterBase* InInstigator, FVector Lo
 	FRotator SpawnRotation = FRotator::ZeroRotator;
 	FGameplayTag ElementTag = InInstigator->GetElementTag();
 	FActorSpawnParameters SpawnParameters;
+	SpawnParameters.bNoFail = true;
 	SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
 	SpawnParameters.Instigator = InInstigator;
 	AManaPickup* ManaPickup = GetWorld()->SpawnActor<AManaPickup>(ManaPickupClass, SpawnLocation, SpawnRotation, SpawnParameters);

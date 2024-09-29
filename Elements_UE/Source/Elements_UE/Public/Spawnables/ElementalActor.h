@@ -21,7 +21,7 @@ public:
 
 	
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Meta = (ExposeOnSpawn = true), Category = "Element")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Meta = (ExposeOnSpawn = true), Category = "Element")//, ReplicatedUsing = OnRep_ElementTag)
 	FGameplayTag ElementTag;
 
 	FGameplayTag GetElementTag();
@@ -32,6 +32,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Element")
 	ACharacterBase* OriginalInstigatorCharacter = nullptr;
+
+	//UFUNCTION()
+	//void OnRep_ElementTag(const FGameplayTag& OldElementTag);
 	
 protected:
 	// Called when the game starts or when spawned
