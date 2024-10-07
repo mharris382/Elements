@@ -213,7 +213,13 @@ void AMage::Move(const FInputActionValue& Value)
 
 		// get right vector 
 		const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-
+		
+		bHasMovementInput = !MovementVector.IsZero();
+		CurrentMovementInput = (ForwardDirection * MovementVector.Y) + (RightDirection * MovementVector.X);
+		if (!CurrentMovementInput.IsZero())
+		{
+			LastNonZeroMovementInput = CurrentMovementInput;
+		}
 		// add movement 
 		AddMovementInput(ForwardDirection, MovementVector.Y);
 		AddMovementInput(RightDirection, MovementVector.X);
