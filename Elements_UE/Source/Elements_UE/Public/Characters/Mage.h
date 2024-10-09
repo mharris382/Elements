@@ -86,6 +86,8 @@ class ELEMENTS_UE_API AMage : public ACharacterBase
 	UInputAction* LookAction;
 
 
+
+
 	virtual void FinishDying() override;
 
 public:
@@ -94,6 +96,15 @@ public:
 	// Array of input-action mappings to ability tags
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Abilities")
 	TArray<FInputAbilityMapping> InputAbilityMappings;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Input)
+	bool bHasMovementInput;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Input)
+	FVector CurrentMovementInput;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Input)
+	FVector LastNonZeroMovementInput;
 
 protected:
 

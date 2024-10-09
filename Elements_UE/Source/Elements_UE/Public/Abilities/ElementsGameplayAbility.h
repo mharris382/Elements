@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Abilities/GameplayAbility.h"
+#include "GameplayTagContainer.h"
 #include "ElementsGameplayAbility.generated.h"
 
 
@@ -39,6 +40,9 @@ public:
 	// Tells an ability to activate immediately when its granted. Used for passive abilities and abilities forced on others.
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Ability")
 	bool ActivateAbilityOnGranted = false;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Ability", meta = (Categories = "AI.Tokens"))
+	FGameplayTag AITokenTag;
 
 	// If an ability is marked as 'ActivateAbilityOnGranted', activate them immediately when given here
 	// Epic's comment: Projects may want to initiate passives or do other "BeginPlay" type of logic here.
