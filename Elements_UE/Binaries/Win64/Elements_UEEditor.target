@@ -2534,6 +2534,18 @@
 			"Type": "RequiredResource"
 		},
 		{
+			"Path": "$(EngineDir)/Plugins/Experimental/GameplayBehaviors/Binaries/Win64/UnrealEditor-GameplayBehaviorsEditorModule.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Experimental/GameplayBehaviors/Binaries/Win64/UnrealEditor-GameplayBehaviorsModule.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Experimental/GameplayBehaviors/Binaries/Win64/UnrealEditor.modules",
+			"Type": "RequiredResource"
+		},
+		{
 			"Path": "$(EngineDir)/Plugins/Experimental/GeometryCollectionPlugin/Binaries/Win64/UnrealEditor-GeometryCollectionEditor.dll",
 			"Type": "DynamicLibrary"
 		},
@@ -2895,6 +2907,18 @@
 		},
 		{
 			"Path": "$(EngineDir)/Plugins/Interchange/Runtime/Binaries/Win64/UnrealEditor.modules",
+			"Type": "RequiredResource"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/RadialMenu/Binaries/Win64/UnrealEditor-RadialMenu.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/RadialMenu/Binaries/Win64/UnrealEditor-RadialMenu.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/RadialMenu/Binaries/Win64/UnrealEditor.modules",
 			"Type": "RequiredResource"
 		},
 		{
@@ -3314,6 +3338,22 @@
 			"Type": "RequiredResource"
 		},
 		{
+			"Path": "$(EngineDir)/Plugins/Runtime/CommonUI/Binaries/Win64/UnrealEditor-CommonInput.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Runtime/CommonUI/Binaries/Win64/UnrealEditor-CommonUI.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Runtime/CommonUI/Binaries/Win64/UnrealEditor-CommonUIEditor.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Runtime/CommonUI/Binaries/Win64/UnrealEditor.modules",
+			"Type": "RequiredResource"
+		},
+		{
 			"Path": "$(EngineDir)/Plugins/Runtime/CustomMeshComponent/Binaries/Win64/UnrealEditor-CustomMeshComponent.dll",
 			"Type": "DynamicLibrary"
 		},
@@ -3719,6 +3759,30 @@
 		},
 		{
 			"Path": "$(ProjectDir)/Binaries/Win64/UnrealEditor.modules",
+			"Type": "RequiredResource"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/AICoordination/Binaries/Win64/UnrealEditor-AICoordination.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/AICoordination/Binaries/Win64/UnrealEditor-AICoordination.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/AICoordination/Binaries/Win64/UnrealEditor.modules",
+			"Type": "RequiredResource"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/PCGExtendedToolkit/Binaries/Win64/UnrealEditor-PCGExtendedToolkit.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/PCGExtendedToolkit/Binaries/Win64/UnrealEditor-PCGExtendedToolkit.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/PCGExtendedToolkit/Binaries/Win64/UnrealEditor.modules",
 			"Type": "RequiredResource"
 		}
 	],
@@ -26420,6 +26484,10 @@
 			"Type": "UFS"
 		},
 		{
+			"Path": "$(EngineDir)/Plugins/Experimental/GameplayBehaviors/GameplayBehaviors.uplugin",
+			"Type": "UFS"
+		},
+		{
 			"Path": "$(EngineDir)/Plugins/Experimental/GeometryCollectionPlugin/GeometryCollectionPlugin.uplugin",
 			"Type": "UFS"
 		},
@@ -26449,6 +26517,10 @@
 		},
 		{
 			"Path": "$(EngineDir)/Plugins/Experimental/PCGBiomeCore/PCGBiomeCore.uplugin",
+			"Type": "UFS"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Experimental/PCGBiomeSample/PCGBiomeSample.uplugin",
 			"Type": "UFS"
 		},
 		{
@@ -26513,6 +26585,10 @@
 		},
 		{
 			"Path": "$(EngineDir)/Plugins/Interchange/Runtime/Interchange.uplugin",
+			"Type": "UFS"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/RadialMenu/RadialMenu.uplugin",
 			"Type": "UFS"
 		},
 		{
@@ -26672,6 +26748,10 @@
 			"Type": "UFS"
 		},
 		{
+			"Path": "$(EngineDir)/Plugins/Runtime/CommonUI/CommonUI.uplugin",
+			"Type": "UFS"
+		},
+		{
 			"Path": "$(EngineDir)/Plugins/Runtime/CustomMeshComponent/CustomMeshComponent.uplugin",
 			"Type": "UFS"
 		},
@@ -26798,10 +26878,19 @@
 		{
 			"Path": "$(ProjectDir)/Elements_UE.uproject",
 			"Type": "UFS"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/AICoordination/AICoordination.uplugin",
+			"Type": "UFS"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/PCGExtendedToolkit/PCGExtendedToolkit.uplugin",
+			"Type": "UFS"
 		}
 	],
 	"BuildPlugins": [
 		"ACLPlugin",
+		"AICoordination",
 		"AISupport",
 		"ActorLayerUtilities",
 		"ActorSequence",
@@ -26845,6 +26934,7 @@
 		"ChunkDownloader",
 		"CmdLinkServer",
 		"CodeLiteSourceCodeAccess",
+		"CommonUI",
 		"ContentBrowserAssetDataSource",
 		"ContentBrowserClassDataSource",
 		"ContentBrowserFileDataSource",
@@ -26871,6 +26961,7 @@
 		"FullBodyIK",
 		"GLTFExporter",
 		"GameplayAbilities",
+		"GameplayBehaviors",
 		"GameplayCameras",
 		"GameplayTagsEditor",
 		"GeometryCache",
@@ -26929,6 +27020,8 @@
 		"OpenImageDenoise",
 		"PCG",
 		"PCGBiomeCore",
+		"PCGBiomeSample",
+		"PCGExtendedToolkit",
 		"PCGGeometryScriptInterop",
 		"PCGWaterInterop",
 		"Paper2D",
@@ -26945,6 +27038,7 @@
 		"PropertyAccessNode",
 		"ProxyLODPlugin",
 		"PythonScriptPlugin",
+		"RadialMenu",
 		"RenderDocPlugin",
 		"RenderGraphInsights",
 		"ResonanceAudio",
