@@ -70,6 +70,14 @@
 		{
 			"Name": "PCGBiomeSample",
 			"Enabled": true
+		},
+		{
+			"Name": "MotionTrajectory",
+			"Enabled": true
+		},
+		{
+			"Name": "PoseSearch",
+			"Enabled": true
 		}
 	]
 }
