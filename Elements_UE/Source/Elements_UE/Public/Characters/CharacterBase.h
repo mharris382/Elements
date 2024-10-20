@@ -34,8 +34,10 @@ public:
 
 	FGameplayTag GetElementTag();
 
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Elements|Character", ReplicatedUsing = OnRep_CharacterElementTag, Meta = (Categories = "Characters.Archetype"))
+	FGameplayTag CharacterArchetypeTag;
 
-	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Elements|Character", ReplicatedUsing = OnRep_CharacterElementTag)
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Elements|Character", ReplicatedUsing = OnRep_CharacterElementTag, Meta = (Categories = "Elements"))
 	FGameplayTag CharacterElementTag;
 
 	UFUNCTION()
