@@ -3,6 +3,7 @@
 		"C:\\Users\\Admin\\Documents\\UE_Projects\\Elements\\Elements_UE\\Source\\Elements_UE\\Elements_UE.Build.cs",
 		"C:\\Users\\Admin\\Documents\\UE_Projects\\Elements\\Elements_UE\\Plugins\\AICoordination\\Source\\AICoordination\\AICoordination.Build.cs",
 		"C:\\Users\\Admin\\Documents\\UE_Projects\\Elements\\Elements_UE\\Plugins\\PCGExtendedToolkit\\Source\\PCGExtendedToolkit\\PCGExtendedToolkit.Build.cs",
+		"C:\\Users\\Admin\\Documents\\UE_Projects\\Elements\\Elements_UE\\Plugins\\SceneCaptureExporter\\Source\\SceneCaptureExporter\\SceneCaptureExporter.Build.cs",
 		"C:\\Users\\Admin\\Documents\\UE_Projects\\Elements\\Elements_UE\\Source\\Elements_UE.Target.cs",
 		"C:\\Users\\Admin\\Documents\\UE_Projects\\Elements\\Elements_UE\\Source\\Elements_UEEditor.Target.cs"
 	],

@@ -30,6 +30,8 @@
 			"ElementsPlayerState.gen.cpp.obj",
 			"ElementsShieldAbility.gen.cpp.obj",
 			"ElementSubsystem.gen.cpp.obj",
+			"Elements_UECharacter.gen.cpp.obj",
+			"Elements_UEGameMode.gen.cpp.obj",
 			"EnemyCharacter.gen.cpp.obj",
 			"EnemyInterface.gen.cpp.obj",
 			"HitListenerInterface.gen.cpp.obj",
@@ -83,9 +85,7 @@
 			"ElementalDamageCarrier.cpp.obj",
 			"ElementalPhysicalBlocker.cpp.obj",
 			"ElementsActivatableWidget.cpp.obj",
-			"Elements_UE.init.gen.cpp.obj",
-			"Elements_UECharacter.gen.cpp.obj",
-			"Elements_UEGameMode.gen.cpp.obj"
+			"Elements_UE.init.gen.cpp.obj"
 		]
 	}
 }
